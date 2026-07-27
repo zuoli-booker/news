@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>家庭健康课 · Day 5</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#F7F7F5;color:#333;line-height:1.8;font-size:16px;max-width:680px;margin:0 auto;padding-bottom:80px}
+.topbar{background:#9B59B6;color:#fff;padding:24px 20px 20px}
+.topbar .meta{font-size:13px;opacity:.8;letter-spacing:1px}
+.topbar h1{font-size:21px;font-weight:700;margin-top:6px;line-height:1.4}
+.topbar .stage{display:inline-block;margin-top:10px;font-size:12px;background:rgba(255,255,255,.2);padding:3px 10px;border-radius:12px}
+.intro{background:#fff;padding:16px 20px;border-bottom:1px solid #EEE;font-size:14px;color:#666;line-height:1.7}
+.section{background:#fff;margin:10px 0;padding:22px 20px}
+.section-tag{font-size:12px;color:#999;letter-spacing:2px;margin-bottom:8px}
+h2{font-size:18px;font-weight:700;margin-bottom:6px;color:#222}
+h3{font-size:16px;font-weight:700;margin:18px 0 8px;color:#333}
+h3:first-child{margin-top:0}
+p{font-size:15px;color:#444;margin-bottom:10px}
+ul{list-style:none;margin:6px 0 12px}
+ul li{font-size:15px;color:#444;padding:4px 0 4px 18px;position:relative}
+ul li::before{content:"·";position:absolute;left:4px;color:#aaa;font-weight:bold}
+b,strong{font-weight:600;color:#222}
+.tip{background:#FFF8E1;border-radius:8px;padding:12px 16px;margin:10px 0;font-size:14px;color:#7A5C00}
+.tip strong{color:#B8860B}
+.warn{background:#FFF0F0;border-radius:8px;padding:12px 16px;margin:10px 0;font-size:14px;color:#A03030}
+.warn strong{color:#C0392B}
+.lang-item{background:#F2F8F2;border-radius:8px;padding:10px 14px;margin-bottom:6px;font-size:14px}
+.lang-item .age{font-weight:700;color:#3D6B3D}
+.env-row{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.env-item{flex:1 1 45%;background:#F9F7F2;border-radius:8px;padding:12px 14px}
+.env-item .emoji{font-size:18px}
+.env-item .title{font-weight:600;font-size:14px;color:#333;margin:2px 0}
+.env-item .desc{font-size:12px;color:#888}
+.action-list{margin-top:8px}
+.action-item{display:flex;align-items:flex-start;padding:12px 0;border-bottom:1px solid #F0F0F0;cursor:pointer}
+.action-item:last-child{border:none}
+.action-box{width:22px;height:22px;border:2px solid #DDD;border-radius:6px;margin-right:12px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.action-item.done .action-box{background:#9B59B6;border-color:#9B59B6}
+.action-item.done .action-mark{display:block;color:#fff;font-size:13px;font-weight:bold}
+.action-mark{display:none}
+.action-text{font-size:15px;color:#444;flex:1}
+.action-item.done .action-text{color:#BBB;text-decoration:line-through}
+.quiz-options{margin-top:10px}
+.quiz-opt{display:block;width:100%;padding:14px 16px;margin-bottom:8px;border:2px solid #E8E8E8;border-radius:10px;background:#fff;font-size:15px;color:#555;cursor:pointer;transition:all .2s;text-align:left}
+.quiz-opt:active{transform:scale(.98)}
+.quiz-opt.selected-correct{border-color:#9B59B6;background:#F5F0FF;color:#6C3483}
+.quiz-opt.selected-wrong{border-color:#E8833A;background:#FFF3E0;color:#B5651D}
+.quiz-opt.disabled{pointer-events:none;opacity:.6}
+.quiz-feedback{margin-top:8px;padding:10px 14px;border-radius:8px;font-size:14px;display:none;line-height:1.6}
+.quiz-feedback.show{display:block}
+.quiz-feedback.correct-fb{background:#E8F5E9;color:#2E7D32}
+.quiz-feedback.wrong-fb{background:#FFF3E0;color:#E65100}
+.insight{background:#F3E8FF;border-radius:10px;padding:16px 20px;margin:10px 0}
+.insight-label{font-size:13px;color:#7C3AED;font-weight:600;margin-bottom:6px}
+.insight-text{font-size:15px;color:#4A2A6B;line-height:1.7;font-weight:500}
+.next-day{background:#F0ECE5;border-radius:10px;padding:14px 20px;margin:10px 0;font-size:14px;color:#888}
+.sources{font-size:12px;color:#BBB;padding:16px 20px;line-height:1.6}
+.sources .src{margin-bottom:4px}
+.submit-bar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #EEE;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;max-width:680px;margin:0 auto;z-index:100}
+.submit-info{font-size:13px;color:#999}
+.submit-btn{padding:10px 28px;border:none;border-radius:20px;background:#9B59B6;color:#fff;font-size:15px;font-weight:600;cursor:pointer;transition:all .2s}
+.submit-btn:active{transform:scale(.95)}
+.submit-btn:disabled{background:#CCC}
+.submit-success{position:fixed;bottom:70px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:10px 24px;border-radius:20px;font-size:14px;display:none;z-index:200}
+.submit-success.show{display:block;animation:fadeUp .4s ease}
+@keyframes fadeUp{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}
+.divider{text-align:center;color:#CCC;font-size:12px;margin:14px 0;letter-spacing:3px}
+.guide{background:#F0F7FF;border-left:4px solid #4A90D9;border-radius:0 8px 8px 0;padding:12px 16px;margin:10px 0;font-size:14px;color:#3A6B9E;line-height:1.7}
+.card-ref{font-size:13px;color:#999;margin:8px 0;padding-top:8px;border-top:1px solid #EEE}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="meta">📚 家庭健康课 · Day 5 / 112</div>
+  <h1>如厕训练详解 + 执拗期情绪应对</h1>
+  <span class="stage">阶段① 认识你的 1 岁孩子 · 第 1 周</span>
+</div>
+
+<div class="intro">今天继续第一周的最后两个核心话题：如厕训练的具体方法，以及让很多父母头疼的「执拗期（Terrible Two）」。奶糖现在 1 岁，很快就会说"不"了——提前了解，这两个话题未来都会用得上。</div>
+
+
+<div class="section">
+  <div class="section-tag">主 课 · 5-6 分钟</div>
+  <h2>如厕训练：黄金时间窗 + 五步法</h2>
+  <p style="font-size:13px;color:#999">K063 ｜《美国儿科学会育儿百科》</p>
+  
+  <div class="guide">
+    <strong>💭 先想一个问题</strong><br>
+    朋友说她家孩子 1 岁就学会自己上厕所了，你觉得：<br>
+    A. 哇，真厉害，我们也要赶紧开始<br>
+    B. 早了点，等 1 岁半再看吧<br>
+    C. 可能是"会坐坐便器"，不一定是真"会"<br>
+    D. 每个孩子节奏不一样，不焦虑
+  </div>
+
+  <h3>黄金时间窗：别急着开始</h3>
+  <p>AAP 给了一个非常清晰的时间表，能帮你建立合理预期：</p>
+  
+  <div class="lang-item">
+    <span class="age">< 18 个月</span>：不建议开始训练（缺乏控制力和协调力）
+  </div>
+  <div class="lang-item">
+    <span class="age">18-24 个月</span>：多数孩子开始做好准备
+  </div>
+  <div class="lang-item">
+    <span class="age">~2 岁</span>：最佳起步点（AAP 推荐窗口）
+  </div>
+  <div class="lang-item">
+    <span class="age">~2.5 岁</span>：平均独立大小便年龄
+  </div>
+  <div class="lang-item">
+    <span class="age">3-4 岁</span>：白天控制成熟
+  </div>
+  <div class="lang-item">
+    <span class="age">4-6 岁</span>：夜间控制成熟（6 岁前尿床仍正常）
+  </div>
+
+  <div class="tip">
+    <strong>📊 关键数据</strong><br>
+    · 18 个月前开始训练 → 通常要到 <strong>4 岁+</strong> 才完全掌握<br>
+    · 2 岁左右开始 → 只需 <strong>1 年</strong> 就能独立<br>
+    · 结论：早训练 ≠ 早学会，反而拖更久
+  </div>
+
+  <h3>准备好的 5 个信号</h3>
+  <p>孩子"做好准备"后会表现出：</p>
+  <ul>
+    <li>能分辨想大小便的感觉，理解其含义</li>
+    <li>用语言表达需要（"尿尿""新尿布"）</li>
+    <li>渴望独立，愿意配合（过了早期反抗阶段）</li>
+    <li>模仿大人行为</li>
+    <li>即使在尿布上解决了也会告诉你</li>
+  </ul>
+
+  <div class="warn">
+    <strong>⚠️ 重要</strong>：如果孩子还没准备好，提早训练可以但不必要，可能造成不必要的压力。
+  </div>
+
+  <h3>AAP 五步法训练</h3>
+  
+  <p><strong>准备阶段（18-24 月）：</strong></p>
+  <ul>
+    <li>放一个儿童专用坐便器（孩子房间或卫生间）</li>
+    <li>用简单语言告诉他用途和何时使用</li>
+    <li>让他熟悉坐便器，不强迫</li>
+    <li>使用统一词汇："尿尿""拉粑粑"</li>
+    <li>允许他冲马桶，告诉他尿布上的大小便去了哪里</li>
+  </ul>
+
+  <p><strong>训练阶段（孩子准备好后）：</strong></p>
+  <div class="lang-item">
+    <span class="age">步骤 1</span>：熟悉 — 不脱裤子坐在坐便器上，了解用途
+  </div>
+  <div class="lang-item">
+    <span class="age">步骤 2</span>：实操 — 取下尿布坐上去，双脚牢牢踩地（大便时重要）
+  </div>
+  <div class="lang-item">
+    <span class="age">步骤 3</span>：关联 — 把尿布上的排泄物扔进坐便器，领会用途
+  </div>
+  <div class="lang-item">
+    <span class="age">步骤 4</span>：习惯 — 不包尿布时多在坐便器旁玩，餐后是最佳时机
+  </div>
+  <div class="lang-item">
+    <span class="age">步骤 5</span>：换裤 — 白天逐渐换训练裤，男孩可学站着小便
+  </div>
+
+  <h3>训练中的 3 个原则</h3>
+  
+  <p><strong>1. 保持轻松积极</strong></p>
+  <ul>
+    <li>不批评尝试中的失败</li>
+    <li>积极回应每一次努力</li>
+    <li>允许退步，给予鼓励</li>
+    <li>表扬进步，引导把错误当学习机会</li>
+    <li><strong>惩罚只会造成不必要的困扰</strong></li>
+  </ul>
+
+  <p><strong>2. 大便先行</strong></p>
+  <ul>
+    <li>先进行大便训练，小便通常伴随大便</li>
+    <li>大多数孩子（尤其女孩）很快分清两者</li>
+    <li>小男孩刚开始坐着小便，之后学站着</li>
+  </ul>
+
+  <p><strong>3. 夜间训练更慢</strong></p>
+  <ul>
+    <li>午睡/夜间控制需要更长时间</li>
+    <li>一些孩子要到 5-6 岁才不尿床</li>
+    <li>夜间可用训练裤（不用尿布），铺塑料隔尿垫</li>
+    <li>告诉孩子"所有孩子都会尿床"消除顾虑</li>
+    <li><strong>6 岁前尿床正常</strong></li>
+  </ul>
+</div>
+
+
+<div class="section">
+  <div class="insight-label">💡 反直觉发现</div>
+  <div class="insight-text">
+    "对我表现差，对别人表现好" —— 这恰恰说明孩子信任你、有安全感。他对其他人信任不足，不敢试探底线；在你面前敢于尝试各种事，因为他知道你需要时会出现。
+  </div>
+</div>
+
+
+<div class="section">
+  <div class="section-tag">副 课 · 4-5 分钟</div>
+  <h2>执拗期：发脾气是正常的，甚至健康的</h2>
+  <p style="font-size:13px;color:#999">K064 ｜《美国儿科学会育儿百科》</p>
+
+  <h3>为什么会发脾气</h3>
+  <p>1 岁后冲突开始：孩子第一次对你摇头、说"不"。快 2 岁时升级：尖叫、躺地、咬紧牙关、连踢带叫、用拳头捶地、甚至屏住呼吸。</p>
+  
+  <div class="tip">
+    <strong>📝 AAP 的关键定调</strong><br>
+    这些行为对孩子来说是处理冲突的 <strong>正常（甚至健康）的方式</strong>。
+  </div>
+
+  <p>原因分析：</p>
+  <ul>
+    <li>孩子认为整个世界围着他运行</li>
+    <li>正在努力尝试独立，大多数时候你鼓励他坚强果敢</li>
+    <li>但有时他正做想做的事时你制止他，他无法理解为什么你总妨碍他</li>
+    <li>他无法用语言表达沮丧，<strong>唯一方法就是用行动表现</strong></li>
+  </ul>
+
+  <h3>预防发脾气：AAP 七准则</h3>
+  <p>这是本卡最实用的部分。确保所有看护者了解并始终遵守：</p>
+  
+  <p><strong>1. 语气友好，像邀请不是命令</strong></p>
+  <p>用"请"或"谢谢"会很有帮助</p>
+  
+  <p><strong>2. 孩子说"不"时不反应过激</strong></p>
+  <p>他甚至会对冰激凌和蛋糕说"不"。真意是"我说不是因为我想拥有控制力，直到我想清楚或确认你是不是认真的"。冷静、清楚地重述你的请求，<strong>不要因为说"不"而惩罚他</strong>。</p>
+  
+  <p><strong>3. 谨慎选择"战争"</strong></p>
+  <p>除非你先逼迫，否则他不会无缘无故发脾气。安全座椅：必须坚持（不得不逼迫）；先吃豌豆再吃苹果酱：没必要逼迫。只有绝对必要的情况才以"不"回应。</p>
+  
+  <p><strong>4. 给有限选择权</strong></p>
+  <p>让他自己决定穿什么睡衣、读什么故事、玩什么玩具。在这些领域鼓励自主 → 需要时更可能遵从你。</p>
+  
+  <p><strong>5. 不提供不存在的选择，不做交易</strong></p>
+  <p>洗澡、睡觉、不在马路上玩：不容商量。不应因乖巧表现获得额外饼干或去公园的机会。小恩惠只会让他在你未兑现时破坏规矩。</p>
+  
+  <p><strong>6. 预测并避免冲突导火索</strong></p>
+  <p>在商场总吵闹 → 购物时把他留在家里。某个玩伴总让他兴奋 → 暂时分开。</p>
+  
+  <p><strong>7. 赞美和关注好的表现</strong></p>
+  <p>即使只是在他看书时坐身边，陪伴就是认可。</p>
+
+  <h3>发脾气时的核心策略：减少"观众"</h3>
+  <div class="warn">
+    <strong>🤫 把孩子发脾气当作"表演"</strong><br>
+    · 你是唯一观众 → <strong>离开去另一个房间</strong><br>
+    · 如果孩子跟着你 → 平静中断法，放到婴儿围栏中<br>
+    · 如果又踢又咬 → 立即采取平静中断法<br>
+    · 虽然这种行为对孩子正常，但你不应该让他这样做
+  </div>
+
+  <h3>2 岁的情感特征</h3>
+  <ul>
+    <li>情绪变化剧烈：前一刻兴高采烈，一转眼闷闷不乐，时常没明显原因</li>
+    <li>喜欢试探底线（自己的、你的、环境的）</li>
+    <li>越线被拉回时 → 愤怒、挫败 → 大发脾气或闷闷不乐，可能打人、咬人、踢人</li>
+    <li>还不能很好控制情感冲动 → 愤怒突然爆发</li>
+    <li><strong>"对你表现差，对别人表现好"</strong>：对其他人信任不足，不敢试探底线；在你面前敢于尝试，因为他知道你需要时会出现</li>
+  </ul>
+
+  <h3>3 岁的情感特征</h3>
+  <ul>
+    <li>想象力丰富：想象朋友、万物有灵（"月亮来向我问好"）</li>
+    <li>想象与现实界线模糊：吃饭时宣布自己是蜘蛛侠，或把鬼故事当真</li>
+    <li>⚠️ <strong>不要用恐吓逗孩子</strong>："不好好吃饭就关起来" → 可能整天害怕甚至记忆犹新</li>
+    <li>⚠️ <strong>不说"医生给你打针"</strong> → 否则觉得治疗是惩罚 → 恐惧体检</li>
+    <li>给选择权但选项要简单（2-3种，不要一大堆）</li>
+  </ul>
+</div>
+
+
+<div class="section">
+  <div class="section-tag">今 日 答 题</div>
+  <h2>知识检测</h2>
+  
+  <p><strong>Q1. 孩子 1 岁了，朋友说她家已经学会如厕了，你应该？</strong></p>
+  <div class="quiz-options" id="quiz1">
+    <button class="quiz-opt" onclick="checkAnswer(1, 'A')">A. 赶紧也开始训练，不能落后</button>
+    <button class="quiz-opt" onclick="checkAnswer(1, 'B')">B. 等 18-24 个月观察准备信号再开始</button>
+    <button class="quiz-opt" onclick="checkAnswer(1, 'C')">C. 送去托儿所让老师教</button>
+  </div>
+  <div class="quiz-feedback" id="fb1"></div>
+
+  <p><strong>Q2. 奶糖在商场当众大发脾气，你很尴尬，最佳策略是？</strong></p>
+  <div class="quiz-options" id="quiz2">
+    <button class="quiz-opt" onclick="checkAnswer(2, 'A')">A. 赶紧哄她，满足她的要求，别让大家看笑话</button>
+    <button class="quiz-opt" onclick="checkAnswer(2, 'B')">B. 把她抱起来赶紧走，回家再教训</button>
+    <button class="quiz-opt" onclick="checkAnswer(2, 'C')">C. 如果每次都这样，以后购物时把她留在家里</button>
+  </div>
+  <div class="quiz-feedback" id="fb2"></div>
+
+  <p><strong>Q3. 孩子在家对你闹脾气，在保姆面前很乖，说明？</strong></p>
+  <div class="quiz-options" id="quiz3">
+    <button class="quiz-opt" onclick="checkAnswer(3, 'A')">A. 你管得太松了，孩子不怕你</button>
+    <button class="quiz-opt" onclick="checkAnswer(3, 'B')">B. 孩子信任你，在你面前有安全感才敢试探</button>
+    <button class="quiz-opt" onclick="checkAnswer(3, 'C')">C. 保姆教得比你好</button>
+  </div>
+  <div class="quiz-feedback" id="fb3"></div>
+</div>
+
+
+<div class="section">
+  <div class="section-tag">行 动 清 单</div>
+  <h2>现在就可以做的</h2>
+  
+  <div class="action-list" id="actions">
+    <div class="action-item" onclick="toggleAction(this)">
+      <div class="action-box"><span class="action-mark">✓</span></div>
+      <div class="action-text">确定统一如厕词汇："尿尿""拉粑粑"</div>
+    </div>
+    <div class="action-item" onclick="toggleAction(this)">
+      <div class="action-box"><span class="action-mark">✓</span></div>
+      <div class="action-text">买一个儿童专用坐便器放在卫生间</div>
+    </div>
+    <div class="action-item" onclick="toggleAction(this)">
+      <div class="action-box"><span class="action-mark">✓</span></div>
+      <div class="action-text">给孩子有限选择权（穿哪件衣服/玩哪个玩具）</div>
+    </div>
+    <div class="action-item" onclick="toggleAction(this)">
+      <div class="action-box"><span class="action-mark">✓</span></div>
+      <div class="action-text">确立不容商量的事项清单（洗澡/睡觉/安全座椅）</div>
+    </div>
+    <div class="action-item" onclick="toggleAction(this)">
+      <div class="action-box"><span class="action-mark">✓</span></div>
+      <div class="action-text">不用恐吓方式逗孩子（"关起来""丢下""打针"）</div>
+    </div>
+    <div class="action-item" onclick="toggleAction(this)">
+      <div class="action-box"><span class="action-mark">✓</span></div>
+      <div class="action-text">全家统一：不因外部压力提前如厕训练</div>
+    </div>
+  </div>
+</div>
+
+
+<div class="section">
+  <div class="next-day">
+    <strong>📅 明天（周三）</strong>：场景应用日 — 本周学到的知识怎么用到奶糖的实际生活中？<br>
+    情境：夜醒频繁、奶奶要抱、妈妈很崩溃
+  </div>
+</div>
+
+
+<div class="sources">
+  <div class="src">📚 来源：《美国儿科学会育儿百科（第七版）》第 10-12 章</div>
+  <div class="src">📍 知识卡片：K063（如厕训练）、K064（执拗期情绪应对）</div>
+</div>
+
+
+<div class="submit-bar">
+  <div class="submit-info" id="progress">已完成 0/3 答题 + 0/6 行动</div>
+  <button class="submit-btn" onclick="submitDay()" id="submitBtn">提交打卡</button>
+</div>
+
+<div class="submit-success" id="successMsg">提交成功 ✓ Day 5 已完成</div>
+
+<script>
+const answers = {
+  1: { correct: 'B', feedback: '正确！AAP 推荐 18-24 个月观察准备信号再开始。18 个月前开始反而要拖到 4 岁+才掌握，2 岁开始只需 1 年。' },
+  2: { correct: 'C', feedback: '正确！预防胜于应对。如果已知某场景会触发，优先避免，等孩子大一些再尝试。' },
+  3: { correct: 'B', feedback: '正确！这恰恰说明孩子信任你、有安全感。他对其他人信任不足，不敢试探底线。' }
+};
+
+let quizDone = [false, false, false];
+let actionCount = 0;
+
+function checkAnswer(qNum, answer) {
+  if (quizDone[qNum-1]) return;
+  quizDone[qNum-1] = true;
+  
+  const opts = document.querySelectorAll('#quiz' + qNum + ' .quiz-opt');
+  const fb = document.getElementById('fb' + qNum);
+  
+  opts.forEach(opt => opt.classList.add('disabled'));
+  
+  if (answer === answers[qNum].correct) {
+    event.target.classList.add('selected-correct');
+    fb.className = 'quiz-feedback correct-fb show';
+    fb.innerHTML = '✓ ' + answers[qNum].feedback;
+  } else {
+    event.target.classList.add('selected-wrong');
+    fb.className = 'quiz-feedback wrong-fb show';
+    fb.innerHTML = '✗ 不对哦～' + answers[qNum].feedback;
+  }
+  
+  updateProgress();
+}
+
+function toggleAction(item) {
+  item.classList.toggle('done');
+  actionCount = document.querySelectorAll('.action-item.done').length;
+  updateProgress();
+}
+
+function updateProgress() {
+  const quizCount = quizDone.filter(x => x).length;
+  document.getElementById('progress').textContent = 
+    '已完成 ' + quizCount + '/3 答题 + ' + actionCount + '/6 行动';
+}
+
+function submitDay() {
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = '提交中...';
+  
+  // 模拟提交
+  setTimeout(() => {
+    document.getElementById('successMsg').classList.add('show');
+    setTimeout(() => {
+      document.getElementById('successMsg').classList.remove('show');
+    }, 3000);
+    btn.textContent = '已提交 ✓';
+  }, 800);
+}
+</script>
+</body>
+</html>
