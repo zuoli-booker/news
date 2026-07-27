@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>家庭健康课 · Day 4</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#F7F7F5;color:#333;line-height:1.8;font-size:16px;max-width:680px;margin:0 auto;padding-bottom:80px}
+.topbar{background:#5B8C5A;color:#fff;padding:24px 20px 20px}
+.topbar .meta{font-size:13px;opacity:.8;letter-spacing:1px}
+.topbar h1{font-size:21px;font-weight:700;margin-top:6px;line-height:1.4}
+.topbar .stage{display:inline-block;margin-top:10px;font-size:12px;background:rgba(255,255,255,.2);padding:3px 10px;border-radius:12px}
+.intro{background:#fff;padding:16px 20px;border-bottom:1px solid #EEE;font-size:14px;color:#666;line-height:1.7}
+.section{background:#fff;margin:10px 0;padding:22px 20px}
+.section-tag{font-size:12px;color:#999;letter-spacing:2px;margin-bottom:8px}
+h2{font-size:18px;font-weight:700;margin-bottom:6px;color:#222}
+h3{font-size:16px;font-weight:700;margin:18px 0 8px;color:#333}
+h3:first-child{margin-top:0}
+p{font-size:15px;color:#444;margin-bottom:10px}
+ul{list-style:none;margin:6px 0 12px}
+ul li{font-size:15px;color:#444;padding:4px 0 4px 18px;position:relative}
+ul li::before{content:"·";position:absolute;left:4px;color:#aaa;font-weight:bold}
+b,strong{font-weight:600;color:#222}
+.tip{background:#FFF8E1;border-radius:8px;padding:12px 16px;margin:10px 0;font-size:14px;color:#7A5C00}
+.tip strong{color:#B8860B}
+.warn{background:#FFF0F0;border-radius:8px;padding:12px 16px;margin:10px 0;font-size:14px;color:#A03030}
+.warn strong{color:#C0392B}
+.ms-row{display:flex;gap:10px;margin:10px 0}
+.ms-card{flex:1;background:#F9F7F2;border-radius:10px;padding:14px}
+.ms-card .age{font-size:14px;font-weight:700;color:#5B8C5A;margin-bottom:4px}
+.ms-card .desc{font-size:13px;color:#777;line-height:1.6}
+.lang-item{background:#F2F8F2;border-radius:8px;padding:10px 14px;margin-bottom:6px;font-size:14px}
+.lang-item .age{font-weight:700;color:#3D6B3D}
+.collapsible{margin:10px 0}
+.collapsible-header{display:flex;align-items:center;justify-content:space-between;background:#5B8C5A;color:#fff;padding:14px 20px;border-radius:10px;cursor:pointer;font-size:15px;font-weight:600}
+.collapsible-header .arrow{transition:transform .3s;font-size:14px}
+.collapsible-header.open .arrow{transform:rotate(180deg)}
+.collapsible-body{display:none;padding:22px 20px;background:#fff;border-radius:0 0 10px 10px}
+.collapsible-body.show{display:block}
+.env-row{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.env-item{flex:1 1 45%;background:#F9F7F2;border-radius:8px;padding:12px 14px}
+.env-item .emoji{font-size:18px}
+.env-item .title{font-weight:600;font-size:14px;color:#333;margin:2px 0}
+.env-item .desc{font-size:12px;color:#888}
+.action-list{margin-top:8px}
+.action-item{display:flex;align-items:flex-start;padding:12px 0;border-bottom:1px solid #F0F0F0;cursor:pointer}
+.action-item:last-child{border:none}
+.action-box{width:22px;height:22px;border:2px solid #DDD;border-radius:6px;margin-right:12px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.action-item.done .action-box{background:#5B8C5A;border-color:#5B8C5A}
+.action-item.done .action-mark{display:block;color:#fff;font-size:13px;font-weight:bold}
+.action-mark{display:none}
+.action-text{font-size:15px;color:#444;flex:1}
+.action-item.done .action-text{color:#BBB;text-decoration:line-through}
+.quiz-options{margin-top:10px}
+.quiz-opt{display:block;width:100%;padding:14px 16px;margin-bottom:8px;border:2px solid #E8E8E8;border-radius:10px;background:#fff;font-size:15px;color:#555;cursor:pointer;transition:all .2s;text-align:left}
+.quiz-opt:active{transform:scale(.98)}
+.quiz-opt.selected-correct{border-color:#5B8C5A;background:#F2F8F2;color:#3D6B3D}
+.quiz-opt.selected-wrong{border-color:#E8833A;background:#FFF3E0;color:#B5651D}
+.quiz-opt.disabled{pointer-events:none;opacity:.6}
+.quiz-feedback{margin-top:8px;padding:10px 14px;border-radius:8px;font-size:14px;display:none;line-height:1.6}
+.quiz-feedback.show{display:block}
+.quiz-feedback.correct-fb{background:#E8F5E9;color:#2E7D32}
+.quiz-feedback.wrong-fb{background:#FFF3E0;color:#E65100}
+.insight{background:#F3E8FF;border-radius:10px;padding:16px 20px;margin:10px 0}
+.insight-label{font-size:13px;color:#7C3AED;font-weight:600;margin-bottom:6px}
+.insight-text{font-size:15px;color:#4A2A6B;line-height:1.7;font-weight:500}
+.next-day{background:#F0ECE5;border-radius:10px;padding:14px 20px;margin:10px 0;font-size:14px;color:#888}
+.sources{font-size:12px;color:#BBB;padding:16px 20px;line-height:1.6}
+.sources .src{margin-bottom:4px}
+.submit-bar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #EEE;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;max-width:680px;margin:0 auto;z-index:100}
+.submit-info{font-size:13px;color:#999}
+.submit-btn{padding:10px 28px;border:none;border-radius:20px;background:#5B8C5A;color:#fff;font-size:15px;font-weight:600;cursor:pointer;transition:all .2s}
+.submit-btn:active{transform:scale(.95)}
+.submit-btn:disabled{background:#CCC}
+.submit-success{position:fixed;bottom:70px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:10px 24px;border-radius:20px;font-size:14px;display:none;z-index:200}
+.submit-success.show{display:block;animation:fadeUp .4s ease}
+@keyframes fadeUp{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}
+.divider{text-align:center;color:#CCC;font-size:12px;margin:14px 0;letter-spacing:3px}
+.guide{background:#F0F7FF;border-left:4px solid #4A90D9;border-radius:0 8px 8px 0;padding:12px 16px;margin:10px 0;font-size:14px;color:#3A6B9E;line-height:1.7}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="meta">📚 家庭健康课 · Day 4 / 112</div>
+  <h1>1-3 岁如厕训练准备 + 信号识别</h1>
+  <span class="stage">阶段① 认识你的 1 岁孩子 · 第 1 周</span>
+</div>
+
+<div class="intro">前三天学了吃和睡，今天聊一个「看起来简单、实际有讲究」的话题：如厕训练。奶糖现在 1 岁，还不用开始训练，但提前了解「什么时候开始、怎么判断准备好了」，能让你在未来 6 个月里从容应对，不焦虑。</div>
+
+
+<div class="section">
+  <div class="section-tag">主 课 · 5-6 分钟</div>
+  <h2>如厕训练：不是"教"，是"准备好"</h2>
+  <p style="font-size:13px;color:#999">K063 ｜《美国儿科学会育儿百科》</p>
+  
+  <div class="guide">
+    <strong>💭 先想一个问题</strong><br>
+    你有没有听过这样的话："你家孩子还穿纸尿裤啊？我家 1 岁半就学会了！" 或者老人说"这么大了还不会自己上厕所？"<br><br>
+    这些话背后藏着一个假设：如厕训练越早越好。但 AAP 的研究告诉我们——<strong>恰恰相反</strong>。
+  </div>
+
+  <h3>① 为什么"越早训练"是个坑？</h3>
+  <p>18 个月以下的孩子，膀胱和肠道的神经控制还没发育成熟。他们不是"不会"，是<strong>真的控制不了</strong>。这时候开始训练，等于让一个还不会游泳的人跳进深水区——结果只能是反复失败。</p>
+  <p>AAP 的数据很明确：</p>
+  <ul>
+    <li><strong>18 个月前开始训练</strong> → 通常要到 <strong>4 岁+</strong> 才完全掌握</li>
+    <li><strong>2 岁左右开始</strong> → 只需 <strong>1 年</strong> 就能独立</li>
+    <li><strong>平均独立年龄</strong>：2.5 岁</li>
+  </ul>
+  <p>早开始 ≠ 早学会。<strong>等孩子准备好，才是最快的路径。</strong></p>
+
+  <div class="tip"><strong>为什么等一等反而快？</strong>因为准备好的孩子，身体控制力、理解力、配合意愿都到位了，学起来事半功倍。没准备好的孩子，你越推他越抗拒，最后变成拉锯战。</div>
+
+  <h3>② 怎么判断"准备好了"？5 个信号</h3>
+  <p>每个孩子节奏不同，但"做好准备"的孩子通常会同时出现以下信号：</p>
+  <ul>
+    <li><strong>信号 1：能感知</strong> —— 知道"我想尿尿/拉粑粑"，不再觉得尿布湿了是理所当然</li>
+    <li><strong>信号 2：能表达</strong> —— 会用语言、表情或动作告诉你（"尿尿""新尿布"、突然安静脸红、躲到角落）</li>
+    <li><strong>信号 3：能配合</strong> —— 过了"你说东我偏西"的反抗期，愿意坐下来听你讲</li>
+    <li><strong>信号 4：有兴趣</strong> —— 对大人上厕所好奇，想模仿</li>
+    <li><strong>信号 5：能控制</strong> —— 尿布能保持 2 小时以上干燥，说明膀胱有储存能力了</li>
+  </ul>
+  <div class="warn"><strong>⚠️ 注意</strong>：5 个信号不需要全部出现，但至少要有 3 个以上再开始。如果孩子还在"执拗期"（什么都说不），等一等。</div>
+
+  <h3>③ 现在（1 岁）能做什么？</h3>
+  <p>虽然不用训练，但你可以做三件事，为 18-24 个月做准备：</p>
+  <ul>
+    <li><strong>放一个儿童坐便器</strong> —— 让奶糖先熟悉这个"玩具"，不强迫坐</li>
+    <li><strong>统一词汇</strong> —— 全家说同样的词："尿尿""拉粑粑"，不用"嘘嘘""嗯嗯"等模糊词</li>
+    <li><strong>换尿布时"解说"</strong> —— "尿布湿了，我们换一个，现在干干的，舒服多了"，帮她建立"干=舒服"的关联</li>
+  </ul>
+</div>
+
+<div class="divider">━━━━━━━━━━</div>
+
+
+<div class="collapsible">
+  <div class="collapsible-header open" onclick="toggleCollapse(this)">
+    <span>📖 延伸阅读：蒙氏如厕理念 + 8 大误解澄清（3-4 分钟）</span>
+    <span class="arrow">▲</span>
+  </div>
+  <div class="collapsible-body show">
+    <p style="font-size:13px;color:#999">K078 ｜《蒙台梭利家庭方案》</p>
+    
+    <h3>蒙氏如厕：不训练，准备环境</h3>
+    <p>蒙台梭利把如厕看作"独立性爆发"的一部分。核心理念不是"训练孩子"，而是<strong>准备环境、观察信号、移除障碍</strong>。</p>
+    <p>怎么做？</p>
+    <ul>
+      <li>小马桶放在固定位置（不一定是卫生间，孩子房间也行）</li>
+      <li>旁边放小凳子，让孩子能独立坐上去</li>
+      <li>准备<strong>训练裤</strong>（不是纸尿裤）—— 让孩子感受到湿感，这是学习控制的关键</li>
+      <li>刚醒、餐后、睡前固定带去马桶 —— 不强迫，坐 30 秒就起来也行</li>
+    </ul>
+    <div class="tip"><strong>关键区别</strong>：传统训练是"定时把尿"，蒙氏是"孩子准备好了再开始"。前者靠条件反射，后者靠自主控制。</div>
+
+    <h3>案例：蔓蔓的如厕故事</h3>
+    <p>蔓蔓 20 个月时开始对妈妈上厕所感兴趣，每天跟着进卫生间。妈妈没有说"来，坐马桶"，只是把小马桶放在她视线范围内。有一天蔓蔓自己坐上去试了试，什么也没发生，妈妈平静地表扬了她的尝试。之后越来越频繁，大约一个月后成功如厕。<strong>整个过程没有哭闹、没有奖惩</strong>。</p>
+    <p>这个案例告诉我们：当孩子准备好了，如厕是一件<strong>水到渠成</strong>的事。强迫和奖惩反而会破坏孩子内在的动力。</p>
+
+    <h3>关于蒙氏教育的 8 个常见误解</h3>
+    <p>聊到蒙氏，很多人有误解。澄清这些，能帮你更从容地做判断：</p>
+    <ul>
+      <li><strong>误解 1</strong>："蒙氏管得太死" → <strong>真相</strong>：核心是自由与纪律的平衡，孩子在有准备的环境中<strong>自由选择</strong></li>
+      <li><strong>误解 2</strong>："蒙氏是放养" → <strong>真相</strong>：成人要精心准备环境、观察需求、移除障碍，不是不管</li>
+      <li><strong>误解 3</strong>："只适合有钱人" → <strong>真相</strong>：核心是观察和有准备环境，不需要昂贵教具</li>
+      <li><strong>误解 4</strong>："反对想象力" → <strong>真相</strong>：主张真实物品是为了建立对真实世界的认知</li>
+      <li><strong>误解 5</strong>："孩子做不好就帮他做" → <strong>真相</strong>：帮助 = 移除障碍 + 示范 + 等待，不是代劳</li>
+      <li><strong>误解 6</strong>："摔碎碗碟要避免" → <strong>真相</strong>：平静面对清理，摔碎是学习的一部分</li>
+      <li><strong>误解 7</strong>："如厕训练越早越好" → <strong>真相</strong>：观察信号，准备环境，顺其自然</li>
+      <li><strong>误解 8</strong>："需要专业培训" → <strong>真相</strong>：最核心的是坚持不懈地观察自己的孩子</li>
+    </ul>
+    <div class="tip"><strong>一句话总结</strong>：所有好的育儿理念最终都会殊途同归。父母只需"择其善者而从之"。</div>
+  </div>
+</div>
+
+
+<div class="section">
+  <div class="section-tag">今 日 输 出</div>
+  <h2>✅ 今日行动</h2>
+  <p style="font-size:14px;color:#999">点击勾选完成的任务</p>
+  <div class="action-list">
+    <div class="action-item" onclick="toggleAction(this)">
+      <div class="action-box"><span class="action-mark">✓</span></div>
+      <span class="action-text">买一个儿童专用坐便器，放在卫生间让奶糖先熟悉（不强迫坐）</span>
+    </div>
+    <div class="action-item" onclick="toggleAction(this)">
+      <div class="action-box"><span class="action-mark">✓</span></div>
+      <span class="action-text">和全家确定统一词汇："尿尿""拉粑粑"，以后都这么说</span>
+    </div>
+    <div class="action-item" onclick="toggleAction(this)">
+      <div class="action-box"><span class="action-mark">✓</span></div>
+      <span class="action-text">换尿布时开始"解说"："尿布湿了，换一个，干干的舒服多了"</span>
+    </div>
+  </div>
+</div>
+
+
+<div class="section">
+  <h2>🤔 今日小问题</h2>
+  <p>奶奶说"邻居家的孩子 1 岁半就会自己上厕所了，奶糖是不是也该练了？"你怎么回应？</p>
+  <div class="quiz-options"><button class="quiz-opt" data-val="A" onclick="quizSelect(this,0)">A. 是啊，是该练了，明天就开始</button><button class="quiz-opt" data-val="B" onclick="quizSelect(this,1)">B. 每个孩子节奏不同，等奶糖准备好再开始，早练反而更慢</button><button class="quiz-opt" data-val="C" onclick="quizSelect(this,2)">C. 现在不练，等 3 岁再说</button>
+  </div>
+  <div class="quiz-feedback" id="quizFb"></div>
+</div>
+
+
+<div class="section">
+  <div class="insight">
+    <div class="insight-label">💡 今日反直觉发现</div>
+    <div class="insight-text">「如厕训练不是越早越好——18 个月前开始要到 4 岁才学会，2 岁开始只需 1 年。等孩子准备好，才是最省时省力的路径。」</div>
+  </div>
+</div>
+
+<div class="next-day">📅 明日预告：Day 5 · 本周速览 -- 生长发育 / 饮食 / 睡眠 / 如厕，如果只记住一件事？</div>
+
+<div class="sources"><div class="src">📖 K063 如厕训练 --《美国儿科学会育儿百科（第七版）》第 10-11 章</div><div class="src">📖 K078 12-36月独立生活 --《蒙台梭利家庭方案》第 7 章 + 尾声</div></div>
+
+<div class="submit-bar">
+  <span class="submit-info" id="submitInfo">行动 0/3 · 答题 未答</span>
+  <button class="submit-btn" id="submitBtn" onclick="submitDay()">提交今日学习</button>
+</div>
+<div class="submit-success" id="submitSuccess">✅ 提交成功！阿虾已收到</div>
+
+<script>
+function toggleCollapse(el){el.classList.toggle('open');el.nextElementSibling.classList.toggle('show')}
+var SUBMIT_URL='__SUBMIT_URL__';
+var actionCount=0;var actionTotal=3;
+function toggleAction(el){el.classList.toggle('done');actionCount=document.querySelectorAll('.action-item.done').length;updateInfo()}
+var quizAnswered=false;var quizVal=null;
+var quizData=[{c:0,f:"1 岁半开始训练看似积极，但可能要到 4 岁才学会。等奶糖准备好（18-24月），只需 1 年。"},{c:1,f:"正确！AAP 数据：18 月前开始→4 岁+学会；2 岁开始→1 年独立。等准备好是最快的路径。"},{c:0,f:"3 岁再开始虽然不晚，但可能错过 18-24 月的最佳窗口。关键是观察准备信号，不是看年龄一刀切。"}];
+function quizSelect(btn,idx){
+  if(quizAnswered)return;quizAnswered=true;
+  var d=quizData[idx];var correct=d.c==1;var feedback=d.f;
+  quizVal=btn.getAttribute('data-val');
+  var opts=document.querySelectorAll('.quiz-opt');
+  var correctVal='';
+  for(var i=0;i<opts.length;i++){
+    opts[i].classList.add('disabled');
+    if(quizData[i].c==1){
+      opts[i].classList.add('selected-correct');
+      correctVal=opts[i].getAttribute('data-val');
+    }
+  }
+  if(!correct)btn.classList.add('selected-wrong');
+  var fb=document.getElementById('quizFb');
+  fb.className='quiz-feedback show '+(correct?'correct-fb':'wrong-fb');
+  var prefix=correct?'✅ ':'❌ 答错了！正确答案是 '+correctVal+'。';
+  fb.textContent=prefix+feedback;
+  updateInfo();
+}
+function updateInfo(){
+  var q=quizVal?'已答':'未答';
+  document.getElementById('submitInfo').textContent='行动 '+actionCount+'/'+actionTotal+' · 答题 '+q;
+}
+function submitDay(){
+  if(document.getElementById('submitBtn').disabled)return;
+  var data={
+    day:'day4',
+    date:new Date().toISOString().slice(0,10),
+    actions:Array.from(document.querySelectorAll('.action-item')).map(function(el){return el.classList.contains('done')}),
+    quiz_answer:quizVal,
+    submitted_at:new Date().toISOString()
+  };
+  fetch(SUBMIT_URL,{method:'PUT',body:JSON.stringify(data)})
+    .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status)})
+    .then(function(d){
+      var s=document.getElementById('submitSuccess');s.classList.add('show');
+      var btn=document.getElementById('submitBtn');btn.textContent='已提交 ✓';btn.disabled=true;
+      setTimeout(function(){s.classList.remove('show')},3000);
+    })
+    .catch(function(e){
+      localStorage.setItem('day4_feedback',JSON.stringify(data));
+      var s=document.getElementById('submitSuccess');s.textContent='已保存（离线）';s.classList.add('show');
+      var btn=document.getElementById('submitBtn');btn.textContent='已保存 ✓';btn.disabled=true;
+      setTimeout(function(){s.classList.remove('show')},3000);
+    });
+}
+</script>
+</body>
+</html>
