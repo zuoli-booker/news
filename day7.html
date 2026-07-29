@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>家庭健康课 · Day 7</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#F7F7F5;color:#333;line-height:1.8;font-size:16px;max-width:680px;margin:0 auto;padding-bottom:80px}
+.topbar{background:#27AE60;color:#fff;padding:24px 20px 20px}
+.topbar .meta{font-size:13px;opacity:.8;letter-spacing:1px}
+.topbar h1{font-size:21px;font-weight:700;margin-top:6px;line-height:1.4}
+.topbar .stage{display:inline-block;margin-top:10px;font-size:12px;background:rgba(255,255,255,.2);padding:3px 10px;border-radius:12px}
+.intro{background:#fff;padding:16px 20px;border-bottom:1px solid #EEE;font-size:14px;color:#666;line-height:1.7}
+.section{background:#fff;margin:10px 0;padding:22px 20px}
+.section-tag{font-size:12px;color:#999;letter-spacing:2px;margin-bottom:8px}
+h2{font-size:18px;font-weight:700;margin-bottom:6px;color:#222}
+h3{font-size:16px;font-weight:700;margin:18px 0 8px;color:#333}
+h3:first-child{margin-top:0}
+p{font-size:15px;color:#444;margin-bottom:10px}
+.day-card{background:#F8F9FA;border-radius:10px;padding:16px;margin:12px 0;border-left:4px solid #27AE60}
+.day-title{font-size:15px;font-weight:600;color:#333;margin-bottom:6px}
+.day-summary{font-size:14px;color:#666;line-height:1.7}
+.core-card{background:#E8F8F5;border-radius:12px;padding:20px;margin:15px 0}
+.core-label{font-size:14px;font-weight:600;color:#1ABC9C;margin-bottom:10px}
+core-text{font-size:16px;color:#117A65;line-height:1.8;font-weight:500}
+.scene-review{background:#FFF3E0;border-radius:10px;padding:16px;margin:12px 0}
+.review-title{font-size:14px;font-weight:600;color:#E67E22;margin-bottom:10px}
+.review-point{font-size:14px;color:#D35400;padding:8px 0;border-bottom:1px solid #FFE0B2}
+.review-point:last-child{border-bottom:none}
+.action-list{margin-top:8px}
+.action-item{display:flex;align-items:flex-start;padding:12px 0;border-bottom:1px solid #F0F0F0;cursor:pointer}
+.action-item:last-child{border:none}
+.action-box{width:22px;height:22px;border:2px solid #DDD;border-radius:6px;margin-right:12px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.action-item.done .action-box{background:#27AE60;border-color:#27AE60}
+.action-item.done .action-mark{display:block;color:#fff;font-size:13px;font-weight:bold}
+.action-mark{display:none}
+.action-text{font-size:15px;color:#444;flex:1}
+.action-item.done .action-text{color:#BBB;text-decoration:line-through}
+.next-week{background:#E8F6F3;border-radius:10px;padding:16px;margin:10px 0}
+.next-week-title{font-size:14px;font-weight:600;color:#16A085;margin-bottom:10px}
+.next-week-item{font-size:14px;color:#117A65;padding:6px 0}
+.submit-bar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #EEE;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;max-width:680px;margin:0 auto;z-index:100}
+.submit-info{font-size:13px;color:#999}
+.submit-btn{padding:10px 28px;border:none;border-radius:20px;background:#27AE60;color:#fff;font-size:15px;font-weight:600;cursor:pointer;transition:all .2s}
+.submit-btn:active{transform:scale(.95)}
+.submit-btn:disabled{background:#CCC}
+.submit-success{position:fixed;bottom:70px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:10px 24px;border-radius:20px;font-size:14px;display:none;z-index:200}
+.submit-success.show{display:block;animation:fadeUp .4s ease}
+@keyframes fadeUp{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}
+.quiz-options{margin-top:10px}
+.quiz-opt{display:block;width:100%;padding:14px 16px;margin-bottom:8px;border:2px solid #E8E8E8;border-radius:10px;background:#fff;font-size:15px;color:#555;cursor:pointer;transition:all .2s;text-align:left}
+.quiz-opt:active{transform:scale(.98)}
+.quiz-opt.selected-correct{border-color:#27AE60;background:#E8F8F5;color:#1E8449}
+.quiz-opt.selected-wrong{border-color:#E74C3C;background:#FDEDEC;color:#C0392B}
+.quiz-opt.disabled{pointer-events:none;opacity:.6}
+.quiz-feedback{margin-top:8px;padding:10px 14px;border-radius:8px;font-size:14px;display:none;line-height:1.6}
+.quiz-feedback.show{display:block}
+.quiz-feedback.correct-fb{background:#E8F5E9;color:#2E7D32}
+.quiz-feedback.wrong-fb{background:#FFF3E0;color:#E65100}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="meta">📋 家庭健康课 · Day 7 / 112</div>
+  <h1>第 1 周速览 · 认识你的 1 岁孩子</h1>
+  <span class="stage">第一周完成 · 准备进入第二周</span>
+</div>
+
+<div class="intro">第一周结束了！我们一起学习了 1 岁宝宝的生长发育、饮食、睡眠、如厕训练和情绪应对。今天来回顾本周的核心内容，把最关键的知识点刻在脑子里。</div>
+
+
+<div class="section">
+  <div class="section-tag">本 周 内 容 回 顾</div>
+  <h2>6 天，我们学了什么</h2>
+  
+  <div class="day-card">
+    <div class="day-title">📌 Day 1 · 生长发育总览</div>
+    <div class="day-summary">
+      💡 1-3 岁生长"减速"是正常的，不是发育落后；大脑有可塑性，环境和经验塑造神经连接
+    </div>
+  </div>
+  
+  <div class="day-card">
+    <div class="day-title">📌 Day 2 · 饮食营养</div>
+    <div class="day-summary">
+      💡 1 岁后奶是补充，三餐是主要营养来源；少糖是终身红利，天然食物的糖就够了；拒绝"追着喂饭"
+    </div>
+  </div>
+  
+  <div class="day-card">
+    <div class="day-title">📌 Day 3 · 睡眠模式 + 睡眠安全</div>
+    <div class="day-summary">
+      💡 1 岁每天需要 11-14 小时睡眠；夜醒频繁是阶段性的，不是"坏习惯"；建立固定睡前程序
+    </div>
+  </div>
+  
+  <div class="day-card">
+    <div class="day-title">📌 Day 4 · 如厕训练准备</div>
+    <div class="day-summary">
+      💡 2 岁左右开始最佳；18 个月前开始反而要拖到 4 岁+；观察准备好的 5 个信号
+    </div>
+  </div>
+  
+  <div class="day-card">
+    <div class="day-title">📌 Day 5 · 执拗期情绪应对</div>
+    <div class="day-summary">
+      💡 发脾气是正常的、甚至健康的；预防七准则；发作时"减少观众"——离开房间
+    </div>
+  </div>
+  
+  <div class="day-card">
+    <div class="day-title">📌 Day 6 · 场景应用（睡眠夜醒）</div>
+    <div class="day-summary">
+      💡 先觉察身体感受，再回应；家庭一致比"正确"更重要；老人的初衷是好的，方式可以慢慢调整
+    </div>
+  </div>
+</div>
+
+
+<div class="section">
+  <div class="core-card">
+    <div class="core-label">🎯 如果这周只记住一件事</div>
+    <div class="core-text">
+      「<strong>很多"问题"其实是这个年龄的正常现象——生长减速是正常的、夜醒是阶段性的、发脾气是健康的、如厕训练不用急。少焦虑，多观察。</strong>」
+    </div>
+  </div>
+</div>
+
+
+<div class="section">
+  <div class="section-tag">昨 日 场 景 复 盘</div>
+  <h2>奶糖夜醒场景的推荐回应</h2>
+  
+  <div class="scene-review">
+    <div class="review-title">💡 推荐回应思路</div>
+    <div class="review-point">
+      <strong>1. 先处理自己的情绪</strong>：深呼吸，觉察胸口的闷感——我现在很疲惫，我需要先照顾好自己
+    </div>
+    <div class="review-point">
+      <strong>2. 先共情奶奶</strong>："妈，你也辛苦了，快回去睡吧，这里我来。"（先肯定付出，再提出建议）
+    </div>
+    <div class="review-point">
+      <strong>3. 安抚奶糖</strong>：轻拍、轻声说话，帮助她学习自己平静下来，而不是立刻抱起来摇
+    </div>
+    <div class="review-point">
+      <strong>4. 第二天找机会沟通</strong>：奶奶不累的时候，跟她分享睡眠知识，慢慢达成一致
+    </div>
+    <div class="review-point">
+      <strong>5. 原谅自己</strong>：今晚做不到"完美回应"没关系，明天又是新的一天
+    </div>
+  </div>
+</div>
+
+
+<div class="section">
+  <div class="section-tag">知 识 测 试</div>
+  <h2>本周掌握得怎么样？</h2>
+  
+  <p><strong>Q1. 奶糖 1 岁了，生长速度比之前慢了很多，你应该？</strong></p>
+  <div class="quiz-options" id="quiz1">
+    <button class="quiz-opt" onclick="checkAnswer(1, 'A')">A. 赶紧补钙补营养，不能落后</button>
+    <button class="quiz-opt" onclick="checkAnswer(1, 'B')">B. 这是正常的，1-3 岁生长本来就会减速</button>
+    <button class="quiz-opt" onclick="checkAnswer(1, 'C')">C. 去医院检查一下，是不是发育有问题</button>
+  </div>
+  <div class="quiz-feedback" id="fb1"></div>
+
+  <p><strong>Q2. 奶糖发脾气躺在地上打滚，最佳策略是？</strong></p>
+  <div class="quiz-options" id="quiz2">
+    <button class="quiz-opt" onclick="checkAnswer(2, 'A')">A. 立刻抱起来哄，别让她哭坏了</button>
+    <button class="quiz-opt" onclick="checkAnswer(2, 'B')">B. 严厉批评，告诉她这样不对</button>
+    <button class="quiz-opt" onclick="checkAnswer(2, 'C')">C. 减少"观众"——去另一个房间，等她平静</button>
+  </div>
+  <div class="quiz-feedback" id="fb2"></div>
+
+  <p><strong>Q3. 朋友说她家孩子 1 岁就学会如厕了，你应该？</strong></p>
+  <div class="quiz-options" id="quiz3">
+    <button class="quiz-opt" onclick="checkAnswer(3, 'A')">A. 焦虑，我们也赶紧开始训练</button>
+    <button class="quiz-opt" onclick="checkAnswer(3, 'B')">B. 不着急，等 2 岁左右观察准备信号再开始</button>
+    <button class="quiz-opt" onclick="checkAnswer(3, 'C')">C. 送去早托班，让老师训练</button>
+  </div>
+  <div class="quiz-feedback" id="fb3"></div>
+</div>
+
+
+<div class="section">
+  <div class="section-tag">第 一 周 打 卡</div>
+  <h2>第一周完成！</h2>
+  
+  <div class="action-list" id="actions">
+    <div class="action-item" onclick="toggleAction(this)">
+      <div class="action-box"><span class="action-mark">✓</span></div>
+      <div class="action-text">完成第一周所有学习日内容</div>
+    </div>
+    <div class="action-item" onclick="toggleAction(this)">
+      <div class="action-box"><span class="action-mark">✓</span></div>
+      <div class="action-text">参与场景应用日的思考和讨论</div>
+    </div>
+    <div class="action-item" onclick="toggleAction(this)">
+      <div class="action-box"><span class="action-mark">✓</span></div>
+      <div class="action-text">本周核心记忆点已记住</div>
+    </div>
+    <div class="action-item" onclick="toggleAction(this)">
+      <div class="action-box"><span class="action-mark">✓</span></div>
+      <div class="action-text">准备好进入第二周的学习</div>
+    </div>
+  </div>
+</div>
+
+
+<div class="section">
+  <div class="next-week">
+    <div class="next-week-title">📅 下周预告 · 第 2 周：吃饭与如厕的学问</div>
+    <div class="next-week-item">• Day 8：辅食进阶 + 自主进食 BLW</div>
+    <div class="next-week-item">• Day 9：挑食应对策略 + 健康饮食习惯</div>
+    <div class="next-week-item">• Day 10：场景应用日（吃饭场景）</div>
+    <div class="next-week-item">• Day 11：如厕训练实操 + 倒退处理</div>
+    <div class="next-week-item">• Day 12：便秘预防 + 腹泻家庭护理</div>
+    <div class="next-week-item">• Day 13：第二周速览</div>
+  </div>
+</div>
+
+
+<div class="submit-bar">
+  <div class="submit-info" id="progress">已完成 0/4 打卡 + 0/3 答题</div>
+  <button class="submit-btn" onclick="submitDay()" id="submitBtn">提交第一周打卡</button>
+</div>
+
+<div class="submit-success" id="successMsg">🎉 第一周完成！太棒了，我们下周见</div>
+
+<script>
+const answers = {
+  1: { correct: 'B', feedback: '正确！1-3 岁生长减速是正常现象，不是发育落后。只要在正常生长曲线范围内就不用担心。' },
+  2: { correct: 'C', feedback: '正确！发脾气时核心策略是"减少观众"。孩子发脾气是处理冲突的正常方式，不用批评也不用立刻哄，等他平静下来再沟通。' },
+  3: { correct: 'B', feedback: '正确！AAP 推荐 2 岁左右开始如厕训练。18 个月前开始反而要拖到 4 岁+才完全掌握，2 岁开始只需 1 年。每个孩子节奏不一样，不焦虑。' }
+};
+
+let quizDone = [false, false, false];
+let actionCount = 0;
+
+function checkAnswer(qNum, answer) {
+  if (quizDone[qNum-1]) return;
+  quizDone[qNum-1] = true;
+  
+  const opts = document.querySelectorAll('#quiz' + qNum + ' .quiz-opt');
+  const fb = document.getElementById('fb' + qNum);
+  
+  opts.forEach(opt => opt.classList.add('disabled'));
+  
+  if (answer === answers[qNum].correct) {
+    event.target.classList.add('selected-correct');
+    fb.className = 'quiz-feedback correct-fb show';
+    fb.innerHTML = '✓ ' + answers[qNum].feedback;
+  } else {
+    event.target.classList.add('selected-wrong');
+    fb.className = 'quiz-feedback wrong-fb show';
+    fb.innerHTML = '✗ 不对哦～' + answers[qNum].feedback;
+  }
+  
+  updateProgress();
+}
+
+function toggleAction(item) {
+  item.classList.toggle('done');
+  actionCount = document.querySelectorAll('.action-item.done').length;
+  updateProgress();
+}
+
+function updateProgress() {
+  const quizCount = quizDone.filter(x => x).length;
+  document.getElementById('progress').textContent = 
+    '已完成 ' + actionCount + '/4 打卡 + ' + quizCount + '/3 答题';
+}
+
+function submitDay() {
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = '提交中...';
+  
+  // 模拟提交
+  setTimeout(() => {
+    document.getElementById('successMsg').classList.add('show');
+    setTimeout(() => {
+      document.getElementById('successMsg').classList.remove('show');
+    }, 5000);
+    btn.textContent = '第一周完成 ✓';
+  }, 800);
+}
+</script>
+</body>
+</html>
