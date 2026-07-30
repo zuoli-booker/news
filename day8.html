@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>家庭健康课 · Day 8</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#F7F7F5;color:#333;line-height:1.8;font-size:16px;max-width:680px;margin:0 auto;padding-bottom:80px}
+.topbar{background:#8E44AD;color:#fff;padding:24px 20px 20px}
+.topbar .meta{font-size:13px;opacity:.8;letter-spacing:1px}
+.topbar h1{font-size:21px;font-weight:700;margin-top:6px;line-height:1.4}
+.topbar .stage{display:inline-block;margin-top:10px;font-size:12px;background:rgba(255,255,255,.2);padding:3px 10px;border-radius:12px}
+.intro{background:#fff;padding:16px 20px;border-bottom:1px solid #EEE;font-size:14px;color:#666;line-height:1.7}
+.section{background:#fff;margin:10px 0;padding:22px 20px}
+.section-tag{font-size:12px;color:#999;letter-spacing:2px;margin-bottom:8px}
+h2{font-size:18px;font-weight:700;margin-bottom:6px;color:#222}
+h3{font-size:16px;font-weight:700;margin:18px 0 8px;color:#333}
+h3:first-child{margin-top:0}
+p{font-size:15px;color:#444;margin-bottom:10px}
+ul{list-style:none;margin:6px 0 12px}
+ul li{font-size:15px;color:#444;padding:4px 0 4px 18px;position:relative}
+ul li::before{content:"·";position:absolute;left:4px;color:#aaa;font-weight:bold}
+b,strong{font-weight:600;color:#222}
+.tip{background:#F4ECF7;border-radius:8px;padding:12px 16px;margin:10px 0;font-size:14px;color:#5B2C6F}
+.tip strong{color:#8E44AD}
+.warn{background:#FFF0F0;border-radius:8px;padding:12px 16px;margin:10px 0;font-size:14px;color:#A03030}
+.warn strong{color:#C0392B}
+.guide{background:#F0F7FF;border-left:4px solid #4A90D9;border-radius:0 8px 8px 0;padding:12px 16px;margin:10px 0;font-size:14px;color:#3A6B9E;line-height:1.7}
+.food-table{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.food-item{flex:1 1 45%;background:#F9F7F2;border-radius:8px;padding:12px 14px}
+.food-item .emoji{font-size:18px}
+.food-item .title{font-weight:600;font-size:14px;color:#333;margin:2px 0}
+.food-item .desc{font-size:12px;color:#888}
+.action-list{margin-top:8px}
+.action-item{display:flex;align-items:flex-start;padding:12px 0;border-bottom:1px solid #F0F0F0;cursor:pointer}
+.action-item:last-child{border:none}
+.action-box{width:22px;height:22px;border:2px solid #DDD;border-radius:6px;margin-right:12px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.action-item.done .action-box{background:#8E44AD;border-color:#8E44AD}
+.action-item.done .action-mark{display:block;color:#fff;font-size:13px;font-weight:bold}
+.action-mark{display:none}
+.action-text{font-size:15px;color:#444;flex:1}
+.action-item.done .action-text{color:#BBB;text-decoration:line-through}
+.quiz-options{margin-top:10px}
+.quiz-opt{display:block;width:100%;padding:14px 16px;margin-bottom:8px;border:2px solid #E8E8E8;border-radius:10px;background:#fff;font-size:15px;color:#555;cursor:pointer;transition:all .2s;text-align:left}
+.quiz-opt:active{transform:scale(.98)}
+.quiz-opt.selected-correct{border-color:#8E44AD;background:#F4ECF7;color:#5B2C6F}
+.quiz-opt.selected-wrong{border-color:#E8833A;background:#FFF3E0;color:#B5651D}
+.quiz-opt.disabled{pointer-events:none;opacity:.6}
+.quiz-feedback{margin-top:8px;padding:10px 14px;border-radius:8px;font-size:14px;display:none;line-height:1.6}
+.quiz-feedback.show{display:block}
+.quiz-feedback.correct-fb{background:#E8F5E9;color:#2E7D32}
+.quiz-feedback.wrong-fb{background:#FFF3E0;color:#E65100}
+.insight{background:#F3E8FF;border-radius:10px;padding:16px 20px;margin:10px 0}
+.insight-label{font-size:13px;color:#7C3AED;font-weight:600;margin-bottom:6px}
+.insight-text{font-size:15px;color:#4A2A6B;line-height:1.7;font-weight:500}
+.next-day{background:#F0ECE5;border-radius:10px;padding:14px 20px;margin:10px 0;font-size:14px;color:#888}
+.sources{font-size:12px;color:#BBB;padding:16px 20px;line-height:1.6}
+.sources .src{margin-bottom:4px}
+.submit-bar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #EEE;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;max-width:680px;margin:0 auto;z-index:100}
+.submit-info{font-size:13px;color:#999}
+.submit-btn{padding:10px 28px;border:none;border-radius:20px;background:#8E44AD;color:#fff;font-size:15px;font-weight:600;cursor:pointer;transition:all .2s}
+.submit-btn:active{transform:scale(.95)}
+.submit-btn:disabled{background:#CCC}
+.submit-success{position:fixed;bottom:70px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:10px 24px;border-radius:20px;font-size:14px;display:none;z-index:200}
+.submit-success.show{display:block;animation:fadeUp .4s ease}
+@keyframes fadeUp{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}
+.divider{text-align:center;color:#CCC;font-size:12px;margin:14px 0;letter-spacing:3px}
+.allergy-table{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.allergy-item{background:#F8F9FA;border-radius:8px;padding:10px 12px}
+.allergy-item .food{font-weight:600;font-size:14px}
+.allergy-item .note{font-size:12px;color:#777}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="meta">📚 家庭健康课 · Day 8 / 112</div>
+  <h1>辅食添加指南 + 膳食纤维与肠道健康</h1>
+  <span class="stage">阶段② 吃饭与如厕的学问 · 第 2 周</span>
+</div>
+
+<div class="intro">奶糖现在正好 1 岁，进入辅食进阶期。今天我们来复习一下辅食添加的核心原则，以及为什么纤维对肠道菌群这么重要——从辅食期开始，给奶糖建立一生受益的饮食习惯。</div>
+
+
+<div class="section">
+  <div class="section-tag">主 课 · 5-6 分钟</div>
+  <h2>辅食添加指南（6-12 月龄）</h2>
+  <p style="font-size:13px;color:#999">K008 ｜《美国儿科学会育儿百科》</p>
+  
+  <div class="guide">
+    <strong>💭 先想一个问题</strong><br>
+    奶糖 1 岁，最近开始吃手指食物，以下哪种做法正确？<br>
+    A. 1 岁前奶为主，辅食只是"练习"，吃饱奶最重要<br>
+    B. 辅食每天要吃三顿，量越多越好<br>
+    C. 1 岁前奶为主，但辅食也要逐步进阶，培养自主进食<br>
+    D. 必须用 BLW 方式，勺子喂就是错的
+  </div>
+
+  <h3>何时开始辅食</h3>
+  <p><strong>最佳时间：6 月龄</strong></p>
+  <p>满足多数准备信号即可开始：</p>
+  <ul>
+    <li>✅ 能够稳定控制头部（不前后晃动）</li>
+    <li>✅ 能在支撑下坐稳</li>
+    <li>✅ 对食物表现出兴趣（盯着看、伸手）</li>
+    <li>✅ 挺舌反射消失（不再用舌头推出勺子）</li>
+  </ul>
+  <div class="warn">
+    <strong>⚠️ 不宜过早</strong>：< 4 月龄消化系统未成熟，过敏风险高。"越早添加睡得越好"是误区。
+  </div>
+
+  <h3>首选食物和进阶</h3>
+  <p>AAP 推荐：<strong>高铁米粉</strong>（强化铁，低过敏风险）或<strong>肉泥</strong>（红肉补铁，吸收率高）</p>
+  
+  <div class="tip">
+    <strong>📊 食物形态进阶</strong>
+    <ul>
+      <li><strong>6-7 月</strong>：细腻泥状 → 米粉、蔬菜泥、水果泥</li>
+      <li><strong>8-9 月</strong>：粗颗粒/碎末 → 肉末、碎菜、软饭</li>
+      <li><strong>10-12 月</strong>：小块/手指食物 → 软水果块、煮软蔬菜条</li>
+      <li><strong>1 岁+</strong>：逐渐过渡到家庭餐桌食物</li>
+    </ul>
+  </div>
+
+  <h3>BLW vs 传统勺喂</h3>
+  <div class="tip">
+    <p><strong>AAP 立场：两种方式都安全有效，可结合使用</strong></p>
+    <ul>
+      <li><strong>BLW（宝宝主导）</strong>：宝宝自己抓食物吃 → 锻炼精细动作，自主进食</li>
+      <li><strong>传统勺喂（大人主导）</strong>：大人用勺子喂 → 易于控制摄入量</li>
+      <li><strong>结论</strong>：根据宝宝偏好和家庭习惯选择，不用迷信某一种</li>
+    </ul>
+  </div>
+
+  <h3>过敏：高危食物和观察</h3>
+  <p>高危食物（鸡蛋、花生、海鲜、牛奶、小麦），<strong>6 月龄后可正常引入，不必延迟</strong></p>
+  
+  <div class="allergy-table">
+    <div class="allergy-item">
+      <div class="food">🥚 鸡蛋</div>
+      <div class="note">蛋白过敏率高，先从蛋黄开始</div>
+    </div>
+    <div class="allergy-item">
+      <div class="food">🥜 花生/坚果</div>
+      <div class="note">必须磨碎，防窒息</div>
+    </div>
+    <div class="allergy-item">
+      <div class="food">🦐 海鲜/贝类</div>
+      <div class="note">新鲜煮熟，观察反应</div>
+    </div>
+    <div class="allergy-item">
+      <div class="food">🥛 牛奶</div>
+      <div class="note">1 岁前不作为主饮品</div>
+    </div>
+  </div>
+  
+  <p>引入新食物原则：</p>
+  <ul>
+    <li>每次只引入一种新食物</li>
+    <li>连续尝试 3-5 天观察过敏</li>
+    <li>无过敏 → 引入下一种</li>
+    <li>有过敏 → 停止，3-6 月后再尝试</li>
+  </ul>
+</div>
+
+
+<div class="section">
+  <div class="insight">
+    <div class="insight-label">💡 反直觉发现</div>
+    <div class="insight-text">
+      「宝宝不吃某种食物就是不喜欢」—— 错！研究表明，一种新食物可能需要尝试 <strong>10-15 次</strong> 宝宝才会接受。不要轻易放弃，每次少量尝试就好。
+    </div>
+  </div>
+</div>
+
+
+<div class="section">
+  <div class="section-tag">副 课 · 4-5 分钟</div>
+  <h2>膳食纤维与肠道健康</h2>
+  <p style="font-size:13px;color:#999">K034 ｜《饮食的迷思》Tim Spector</p>
+
+  <h3>纤维不仅仅是通便剂</h3>
+  <p>纤维是不能被人消化的碳水化合物，但它是<strong>肠道菌群的专属饲料</strong>：</p>
+  <ul>
+    <li>菌群发酵纤维产生<strong>丁酸盐</strong>——肠壁细胞的主要能量来源</li>
+    <li>丁酸盐是天然"抗炎药"，抗癌、抗糖尿病、维持肠壁完整性</li>
+    <li>多样性的纤维摄入 → 多样性的健康菌群</li>
+  </ul>
+
+  <h3>天然富含益生元的食物</h3>
+  <div class="food-table">
+    <div class="food-item">
+      <div class="emoji">🧄</div>
+      <div class="title">大蒜、洋葱、韭葱</div>
+      <div class="desc">低聚果糖，⭐⭐</div>
+    </div>
+    <div class="food-item">
+      <div class="emoji">🥦</div>
+      <div class="title">芦笋、菊苣</div>
+      <div class="desc">菊粉，⭐⭐⭐</div>
+    </div>
+    <div class="food-item">
+      <div class="emoji">🍌</div>
+      <div class="title">香蕉（略生）</div>
+      <div class="desc">抗性淀粉，⭐</div>
+    </div>
+    <div class="food-item">
+      <div class="emoji">🥣</div>
+      <div class="title">燕麦、大麦</div>
+      <div class="desc">β-葡聚糖，⭐⭐</div>
+    </div>
+    <div class="food-item">
+      <div class="emoji">🫘</div>
+      <div class="title">各种豆类</div>
+      <div class="desc">半乳糖低聚糖，⭐⭐</div>
+    </div>
+    <div class="food-item">
+      <div class="emoji">🌾</div>
+      <div class="title">全谷物</div>
+      <div class="desc">混合纤维，⭐</div>
+    </div>
+  </div>
+
+  <h3>辅食期怎么吃纤维</h3>
+  <p>奶糖 1 岁正好是建立习惯的黄金窗口：</p>
+  <ul>
+    <li>从辅食初期就开始每周尝试 <strong>15+ 种蔬果谷豆</strong></li>
+    <li>优先带皮蔬果（洗净软煮），纤维多一倍</li>
+    <li>米糊逐步过渡到燕麦糊、藜麦糊、豆糊</li>
+    <li>蒸红薯、南瓜、胡萝卜、软煮西兰花都是好选择</li>
+    <li>减少果汁，改吃整个水果（果汁去掉了纤维）</li>
+  </ul>
+
+  <h3>常见误区</h3>
+  <div class="warn">
+    <ul>
+      <li>❌ "果汁≈水果" → 去掉纤维，营养价值大跌</li>
+      <li>❌ "无麸质更健康" → 除乳糜泻外无益，反而降低纤维摄入</li>
+      <li>❌ "泻药能代替纤维" → 泻药破坏菌群，纤维是长期方案</li>
+      <li>✅ 记住：纤维多样性 → 菌群多样性 → 终身受益</li>
+    </ul>
+  </div>
+</div>
+
+
+<div class="section">
+  <div class="section-tag">今 日 答 题</div>
+  <h2>知识检测</h2>
+  
+  <p><strong>Q1. 宝宝第一次添加辅食，首选应该是？</strong></p>
+  <div class="quiz-options" id="quiz1">
+    <button class="quiz-opt" onclick="checkAnswer(1, 'A')">A. 小米粥</button>
+    <button class="quiz-opt" onclick="checkAnswer(1, 'B')">B. 高铁米粉或肉泥</button>
+    <button class="quiz-opt" onclick="checkAnswer(1, 'C')">C. 蒸蛋黄</button>
+  </div>
+  <div class="quiz-feedback" id="fb1"></div>
+
+  <p><strong>Q2. 宝宝不吃一种新食物，你应该？</strong></p>
+  <div class="quiz-options" id="quiz2">
+    <button class="quiz-opt" onclick="checkAnswer(2, 'A')">A. 说明宝宝不喜欢，以后再也不做了</button>
+    <button class="quiz-opt" onclick="checkAnswer(2, 'B')">B. 坚持每天少量尝试，可能需要 10-15 次才接受</button>
+    <button class="quiz-opt" onclick="checkAnswer(2, 'C')">C. 强迫宝宝吃下去</button>
+  </div>
+  <div class="quiz-feedback" id="fb2"></div>
+
+  <p><strong>Q3. 膳食纤维对宝宝最重要的作用是？</strong></p>
+  <div class="quiz-options" id="quiz3">
+    <button class="quiz-opt" onclick="checkAnswer(3, 'A')">A. 预防便秘</button>
+    <button class="quiz-opt" onclick="checkAnswer(3, 'B')">B. 喂养健康的肠道菌群</button>
+    <button class="quiz-opt" onclick="checkAnswer(3, 'C')">C. 增加饱腹感</button>
+  </div>
+  <div class="quiz-feedback" id="fb3"></div>
+</div>
+
+
+<div class="section">
+  <div class="section-tag">行 动 清 单</div>
+  <h2>本周可以做的</h2>
+  
+  <div class="action-list" id="actions">
+    <div class="action-item" onclick="toggleAction(this)">
+      <div class="action-box"><span class="action-mark">✓</span></div>
+      <div class="action-text">检查奶糖一周吃了几种植物性食物（目标 15+ 种）</div>
+    </div>
+    <div class="action-item" onclick="toggleAction(this)">
+      <div class="action-box"><span class="action-mark">✓</span></div>
+      <div class="action-text">确认新食物引入原则：一次一种，观察 3-5 天</div>
+    </div>
+    <div class="action-item" onclick="toggleAction(this)">
+      <div class="action-box"><span class="action-mark">✓</span></div>
+      <div class="action-text">开始增加纤维多样性：每周加 1-2 种新蔬果</div>
+    </div>
+    <div class="action-item" onclick="toggleAction(this)">
+      <div class="action-box"><span class="action-mark">✓</span></div>
+      <div class="action-text">减少果汁，改吃整水果</div>
+    </div>
+    <div class="action-item" onclick="toggleAction(this)">
+      <div class="action-box"><span class="action-mark">✓</span></div>
+      <div class="action-text">跟奶奶聊聊辅食原则，统一家庭做法</div>
+    </div>
+  </div>
+</div>
+
+
+<div class="section">
+  <div class="next-day">
+    <strong>📅 明天（周二）</strong>：挑食应对策略 + 健康饮食习惯培养 → Day 9
+  </div>
+</div>
+
+
+<div class="sources">
+  <div class="src">📚 来源 1：《美国儿科学会育儿百科（第七版）》第 4、8、9 章</div>
+  <div class="src">📚 来源 2：《饮食的迷思》Tim Spector · 第 12 章</div>
+  <div class="src">📍 知识卡片：K008（辅食添加指南）、K034（膳食纤维与肠道健康）</div>
+</div>
+
+
+<div class="submit-bar">
+  <div class="submit-info" id="progress">已完成 0/3 答题 + 0/5 行动</div>
+  <button class="submit-btn" onclick="submitDay()" id="submitBtn">提交打卡</button>
+</div>
+
+<div class="submit-success" id="successMsg">提交成功 ✓ Day 8 已完成</div>
+
+<script>
+const answers = {
+  1: { correct: 'B', feedback: '正确！6 月龄后宝宝体内铁储备耗尽，必须从食物获取铁。AAP 推荐高铁米粉或红肉作为首选辅食。' },
+  2: { correct: 'B', feedback: '正确！研究表明，一种新食物可能需要尝试 10-15 次宝宝才会接受。不要轻易放弃，每次少量尝试就好。' },
+  3: { correct: 'B', feedback: '正确！通便只是纤维的副产品，更重要的作用是喂养肠道菌群，产生抗炎抗癌的丁酸盐，建立终身健康的肠道环境。' }
+};
+
+let quizDone = [false, false, false];
+let actionCount = 0;
+
+function checkAnswer(qNum, answer) {
+  if (quizDone[qNum-1]) return;
+  quizDone[qNum-1] = true;
+  
+  const opts = document.querySelectorAll('#quiz' + qNum + ' .quiz-opt');
+  const fb = document.getElementById('fb' + qNum);
+  
+  opts.forEach(opt => opt.classList.add('disabled'));
+  
+  if (answer === answers[qNum].correct) {
+    event.target.classList.add('selected-correct');
+    fb.className = 'quiz-feedback correct-fb show';
+    fb.innerHTML = '✓ ' + answers[qNum].feedback;
+  } else {
+    event.target.classList.add('selected-wrong');
+    fb.className = 'quiz-feedback wrong-fb show';
+    fb.innerHTML = '✗ 不对哦～' + answers[qNum].feedback;
+  }
+  
+  updateProgress();
+}
+
+function toggleAction(item) {
+  item.classList.toggle('done');
+  actionCount = document.querySelectorAll('.action-item.done').length;
+  updateProgress();
+}
+
+function updateProgress() {
+  const quizCount = quizDone.filter(x => x).length;
+  document.getElementById('progress').textContent = 
+    '已完成 ' + quizCount + '/3 答题 + ' + actionCount + '/5 行动';
+}
+
+function submitDay() {
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = '提交中...';
+  
+  // 模拟提交
+  setTimeout(() => {
+    document.getElementById('successMsg').classList.add('show');
+    setTimeout(() => {
+      document.getElementById('successMsg').classList.remove('show');
+    }, 3000);
+    btn.textContent = '已提交 ✓';
+  }, 800);
+}
+</script>
+</body>
+</html>
