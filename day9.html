@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>家庭健康课 · Day 9</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#F7F7F5;color:#333;line-height:1.8;font-size:16px;max-width:680px;margin:0 auto;padding-bottom:80px}
+.topbar{background:#27AE60;color:#fff;padding:24px 20px 20px}
+.topbar .meta{font-size:13px;opacity:.8;letter-spacing:1px}
+.topbar h1{font-size:21px;font-weight:700;margin-top:6px;line-height:1.4}
+.topbar .stage{display:inline-block;margin-top:10px;font-size:12px;background:rgba(255,255,255,.2);padding:3px 10px;border-radius:12px}
+.intro{background:#fff;padding:16px 20px;border-bottom:1px solid #EEE;font-size:14px;color:#666;line-height:1.7}
+.section{background:#fff;margin:10px 0;padding:22px 20px}
+.section-tag{font-size:12px;color:#999;letter-spacing:2px;margin-bottom:8px}
+h2{font-size:18px;font-weight:700;margin-bottom:6px;color:#222}
+h3{font-size:16px;font-weight:700;margin:18px 0 8px;color:#333}
+h3:first-child{margin-top:0}
+p{font-size:15px;color:#444;margin-bottom:10px}
+ul{list-style:none;margin:6px 0 12px}
+ul li{font-size:15px;color:#444;padding:4px 0 4px 18px;position:relative}
+ul li::before{content:"·";position:absolute;left:4px;color:#aaa;font-weight:bold}
+b,strong{font-weight:600;color:#222}
+.tip{background:#E8F5E9;border-radius:8px;padding:12px 16px;margin:10px 0;font-size:14px;color:#2E7D32}
+.tip strong{color:#1B5E20}
+.warn{background:#FFF0F0;border-radius:8px;padding:12px 16px;margin:10px 0;font-size:14px;color:#A03030}
+.warn strong{color:#C0392B}
+.guide{background:#F0F7FF;border-left:4px solid #4A90D9;border-radius:0 8px 8px 0;padding:12px 16px;margin:10px 0;font-size:14px;color:#3A6B9E;line-height:1.7}
+.food-table{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.food-item{flex:1 1 45%;background:#F9F7F2;border-radius:8px;padding:12px 14px}
+.food-item .emoji{font-size:18px}
+.food-item .title{font-weight:600;font-size:14px;color:#333;margin:2px 0}
+.food-item .desc{font-size:12px;color:#888}
+.action-list{margin-top:8px}
+.action-item{display:flex;align-items:flex-start;padding:12px 0;border-bottom:1px solid #F0F0F0;cursor:pointer}
+.action-item:last-child{border:none}
+.action-box{width:22px;height:22px;border:2px solid #DDD;border-radius:6px;margin-right:12px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.action-item.done .action-box{background:#27AE60;border-color:#27AE60}
+.action-item.done .action-mark{display:block;color:#fff;font-size:13px;font-weight:bold}
+.action-mark{display:none}
+.action-text{font-size:15px;color:#444;flex:1}
+.action-item.done .action-text{color:#BBB;text-decoration:line-through}
+.quiz-options{margin-top:10px}
+.quiz-opt{display:block;width:100%;padding:14px 16px;margin-bottom:8px;border:2px solid #E8E8E8;border-radius:10px;background:#fff;font-size:15px;color:#555;cursor:pointer;transition:all .2s;text-align:left}
+.quiz-opt:active{transform:scale(.98)}
+.quiz-opt.selected-correct{border-color:#27AE60;background:#E8F5E9;color:#1E8449}
+.quiz-opt.selected-wrong{border-color:#E74C3C;background:#FDEDEC;color:#C0392B}
+.quiz-opt.disabled{pointer-events:none;opacity:.6}
+.quiz-feedback{margin-top:8px;padding:10px 14px;border-radius:8px;font-size:14px;display:none;line-height:1.6}
+.quiz-feedback.show{display:block}
+.quiz-feedback.correct-fb{background:#E8F5E9;color:#2E7D32}
+.quiz-feedback.wrong-fb{background:#FFF3E0;color:#E65100}
+.insight{background:#E8F5E9;border-radius:10px;padding:16px 20px;margin:10px 0}
+.insight-label{font-size:13px;color:#2E7D32;font-weight:600;margin-bottom:6px}
+.insight-text{font-size:15px;color:#1B5E20;line-height:1.7;font-weight:500}
+.next-day{background:#F0ECE5;border-radius:10px;padding:14px 20px;margin:10px 0;font-size:14px;color:#888}
+.sources{font-size:12px;color:#BBB;padding:16px 20px;line-height:1.6}
+.sources .src{margin-bottom:4px}
+.submit-bar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #EEE;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;max-width:680px;margin:0 auto;z-index:100}
+.submit-info{font-size:13px;color:#999}
+.submit-btn{padding:10px 28px;border:none;border-radius:20px;background:#27AE60;color:#fff;font-size:15px;font-weight:600;cursor:pointer;transition:all .2s}
+.submit-btn:active{transform:scale(.95)}
+.submit-btn:disabled{background:#CCC}
+.submit-success{position:fixed;bottom:70px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:10px 24px;border-radius:20px;font-size:14px;display:none;z-index:200}
+.submit-success.show{display:block;animation:fadeUp .4s ease}
+@keyframes fadeUp{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}
+.divider{text-align:center;color:#CCC;font-size:12px;margin:14px 0;letter-spacing:3px}
+.risk-table{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.risk-item{background:#F8F9FA;border-radius:8px;padding:10px 12px}
+.risk-item .food{font-weight:600;font-size:14px}
+.risk-item .note{font-size:12px;color:#777}
+.ferment-list{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.ferment-item{background:#F4F9F4;border-radius:8px;padding:12px}
+.ferment-item .name{font-weight:600;font-size:14px;color:#2E7D32}
+.ferment-item .note{font-size:13px;color:#555;margin-top:4px}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="meta">📚 家庭健康课 · Day 9 / 112</div>
+  <h1>挑食应对策略 + 益生菌与发酵食品</h1>
+  <span class="stage">阶段② 吃饭与如厕的学问 · 第 2 周</span>
+</div>
+
+<div class="intro">奶糖现在正好1岁，进入辅食转正餐阶段，挑食和食欲下降是家长最焦虑的问题。今天我们来说说AAP怎么看——为什么1岁后吃得少了？挑食正常吗？应该怎么办？再说说益生菌，怎么吃才对宝宝好。</div>
+
+
+<div class="section">
+  <div class="section-tag">主 课 · 5-6 分钟</div>
+  <h2>挑食应对策略（1-3岁）</h2>
+  <p style="font-size:13px;color:#999">K062 ｜《美国儿科学会育儿百科》</p>
+  
+  <div class="guide">
+    <strong>💭 先想一个问题</strong><br>
+    奶糖1岁了，最近突然吃得比之前少很多，你觉得最可能是什么原因？<br>
+    A. 消化不良，需要吃开胃药<br>
+    B. 缺锌，需要补锌<br>
+    C. 生长减速了，热量需求自然下降，正常现象<br>
+    D. 挑食了，要逼她吃光
+  </div>
+
+  <h3>为什么1岁后"不爱吃了"？</h3>
+  <p><strong>AAP核心提醒：这是生理规律，不是病！</strong></p>
+  <ul>
+    <li>1岁后生长速度减缓 → 热量需求下降 → 自然吃得少</li>
+    <li>每天约需 1000 千卡（对成人来说真不多，但对孩子足够）</li>
+    <li>食欲天生多变：今天吃光一切，明天拒吃一切；连续几天只吃一种食物，然后突然不吃了</li>
+  </ul>
+
+  <div class="tip">
+    <strong>📊 AAP四类基础食物清单</strong>
+    <ul>
+      <li><strong>蛋白质</strong>：肉类、鱼类、禽类、蛋类</li>
+      <li><strong>富钙</strong>：乳制品、豆类、绿色蔬菜、种子类</li>
+      <li><strong>果蔬</strong>：各种水果和蔬菜</li>
+      <li><strong>主食</strong>：米粉、面包、面条、土豆、米饭</li>
+    </ul>
+  </div>
+
+  <h3>AAP进餐习惯培养核心原则</h3>
+  
+  <p><strong>1. 吃饭不是战争</strong></p>
+  <ul>
+    <li>孩子拒绝吃饭不是在拒绝你，不针对你</li>
+    <li><strong>你越让孩子吃，孩子越不想吃</strong></li>
+    <li>家长角色：提供健康选项；孩子角色：自己选择吃什么吃多少</li>
+  </ul>
+
+  <p><strong>2. 几天内自然平衡</strong></p>
+  <ul>
+    <li>如果你每顿提供多种健康食物、不逼迫，孩子的饮食几天内就会达到平衡</li>
+    <li>逼迫吃光碗里的食物 → 孩子无法学会自我调节 → 可能导致肥胖或拒食</li>
+  </ul>
+
+  <p><strong>3. 拒吃后不补零食</strong></p>
+  <ul>
+    <li>孩子拒吃正餐 → 保存饭菜等她饿了再给</li>
+    <li><strong>不要给饼干或糖果</strong>：这会让孩子喜欢无营养食物</li>
+    <li>空着比吃垃圾食品好</li>
+  </ul>
+
+  <p><strong>4. 全家同桌吃饭</strong></p>
+  <ul>
+    <li>让她和家庭成员坐一起吃饭 = 培养健康饮食习惯的开始</li>
+    <li>不限制食量，不强迫吃不喜欢的食物</li>
+    <li>孩子会模仿大人吃饭，学习使用餐具</li>
+  </ul>
+
+  <h3>⚠️ 窒息风险食物（2岁仍需警惕）</h3>
+  <p>2岁仍在学咀嚼，急着吃完去玩时不嚼就吞。以下食物应避免或处理：</p>
+  <div class="risk-table">
+    <div class="risk-item">
+      <div class="food">🍇 整颗葡萄</div>
+      <div class="note">必须对半切</div>
+    </div>
+    <div class="risk-item">
+      <div class="food">🌭 热狗</div>
+      <div class="note">先切条再切小块</div>
+    </div>
+    <div class="risk-item">
+      <div class="food">🥜 整颗坚果</div>
+      <div class="note">磨碎或切碎</div>
+    </div>
+    <div class="risk-item">
+      <div class="food">🥕 整根生胡萝卜</div>
+      <div class="note">蒸软切条</div>
+    </div>
+    <div class="risk-item">
+      <div class="food">🍿 爆米花</div>
+      <div class="note">2岁前不建议</div>
+    </div>
+    <div class="risk-item">
+      <div class="food">🍬 硬糖/橡皮糖</div>
+      <div class="note">避免整块给</div>
+    </div>
+  </div>
+  <p><strong>关键处理原则：</strong>只在坐着且有成人看护时吃东西，不在走动/玩耍时进食。</p>
+</div>
+
+
+<div class="section">
+  <div class="insight">
+    <div class="insight-label">💡 反直觉发现</div>
+    <div class="insight-text">
+      「连续三天只吃香蕉」完全正常 — 1岁幼儿饮食习惯天生多变。家长只要继续提供多种健康食物，不逼迫、不补零食，几天内自然就平衡了。挑食不是行为问题，是发育阶段的正常表现。
+    </div>
+  </div>
+</div>
+
+
+<div class="section">
+  <div class="section-tag">副 课 · 4-5 分钟</div>
+  <h2>益生菌：天然发酵食品优于保健品</h2>
+  <p style="font-size:13px;color:#999">K035 ｜《饮食的迷思》Tim Spector</p>
+
+  <h3>核心概念区分</h3>
+  <ul>
+    <li><strong>益生菌</strong>：活的有益菌 → 酸奶、开菲尔、泡菜里的活菌</li>
+    <li><strong>益生元</strong>：喂菌的食物 → 纤维、菊粉 → 就是我们昨天说的膳食纤维</li>
+    <li><strong>后生元</strong>：菌代谢产物 → 丁酸盐、乳酸</li>
+  </ul>
+
+  <h3>真正有证据的天然发酵食品</h3>
+  <div class="ferment-list">
+    <div class="ferment-item">
+      <div class="name">🥛 无糖酸奶</div>
+      <div class="note">每日100-200g，选活菌+无添加糖</div>
+    </div>
+    <div class="ferment-item">
+      <div class="name">🥛 开菲尔</div>
+      <div class="note">30+种菌，效果比酸奶更强</div>
+    </div>
+    <div class="ferment-item">
+      <div class="name">🧀 传统硬奶酪</div>
+      <div class="note">未灭菌版菌群多样性高，补钙+补菌</div>
+    </div>
+    <div class="ferment-item">
+      <div class="name">🥬 传统泡菜</div>
+      <div class="note">冷藏未杀菌版才有活菌</div>
+    </div>
+    <div class="ferment-item">
+      <div class="name">🍶 味噌/纳豆</div>
+      <div class="note">大豆发酵，每日一份很方便</div>
+    </div>
+    <div class="ferment-item">
+      <div class="name">🫖 康普茶</div>
+      <div class="note">注意市售版含糖量差异大</div>
+    </div>
+  </div>
+
+  <h3>宝宝怎么吃发酵食品</h3>
+  <ul>
+    <li><strong>6-12月龄</strong>：从无糖全脂酸奶少量开始，希腊酸奶适合手指食物</li>
+    <li><strong>1-3岁（奶糖当前阶段）</strong>：每日 100-150ml 无糖酸奶，可加少量硬奶酪碎</li>
+    <li><strong>关键提醒</strong>：别买"儿童酸奶"，大多是高糖乳饮料，糖抵消了益生菌好处</li>
+  </ul>
+
+  <h3>益生菌胶囊：大多数健康人不用吃</h3>
+  <div class="warn">
+    <ul>
+      <li>❌ 大部分市售益生菌胶囊没有强证据支持"改善健康"</li>
+      <li>❌ "活菌数百亿"是营销噱头，胃酸后大部分失活</li>
+      <li>✅ 确实有用的场景：抗生素后预防腹泻、儿童急性感染性腹泻</li>
+      <li>✅ 健康人：每天一份天然发酵食品比胶囊更管用</li>
+    </ul>
+  </div>
+
+  <h3>乳糖不耐也能吃酸奶</h3>
+  <p>酸奶中乳糖大多已被菌分解 → 亚洲人70-90%乳糖不耐，多数都能吃酸奶。</p>
+</div>
+
+
+<div class="section">
+  <div class="section-tag">今 日 答 题</div>
+  <h2>知识检测</h2>
+  
+  <p><strong>Q1. 奶糖1岁后突然吃得少了，正确做法是？</strong></p>
+  <div class="quiz-options" id="quiz1">
+    <button class="quiz-opt" onclick="checkAnswer(1, 'A')">A. 赶紧补锌、吃开胃药</button>
+    <button class="quiz-opt" onclick="checkAnswer(1, 'B')">B. 生长减速自然现象，继续提供多种健康食物</button>
+    <button class="quiz-opt" onclick="checkAnswer(1, 'C')">C. 追着喂，逼她吃光</button>
+  </div>
+  <div class="quiz-feedback" id="fb1"></div>
+
+  <p><strong>Q2. 孩子拒吃正餐，你应该？</strong></p>
+  <div class="quiz-options" id="quiz2">
+    <button class="quiz-opt" onclick="checkAnswer(2, 'A')">A. 不给零食，等饿了再吃正餐</button>
+    <button class="quiz-opt" onclick="checkAnswer(2, 'B')">B. 赶紧给块饼干垫垫，别饿坏了</button>
+    <button class="quiz-opt" onclick="checkAnswer(2, 'C')">C. 批评孩子，说她不听话</button>
+  </div>
+  <div class="quiz-feedback" id="fb2"></div>
+
+  <p><strong>Q3. 给宝宝选酸奶，正确的是？</strong></p>
+  <div class="quiz-options" id="quiz3">
+    <button class="quiz-opt" onclick="checkAnswer(3, 'A')">A. 买儿童酸奶，大品牌就好</button>
+    <button class="quiz-opt" onclick="checkAnswer(3, 'B')">B. 选无糖全脂酸奶，看配料表糖<5g/100g</button>
+    <button class="quiz-opt" onclick="checkAnswer(3, 'C')">C. 买乳酸菌饮料，更健康</button>
+  </div>
+  <div class="quiz-feedback" id="fb3"></div>
+</div>
+
+
+<div class="section">
+  <div class="section-tag">行 动 清 单</div>
+  <h2>本周可以做的</h2>
+  
+  <div class="action-list" id="actions">
+    <div class="action-item" onclick="toggleAction(this)">
+      <div class="action-box"><span class="action-mark">✓</span></div>
+      <div class="action-text">接受"1岁后吃得少是正常的"，不再焦虑</div>
+    </div>
+    <div class="action-item" onclick="toggleAction(this)">
+      <div class="action-box"><span class="action-mark">✓</span></div>
+      <div class="action-text">每顿提供2-3种健康选项，不强迫吃光</div>
+    </div>
+    <div class="action-item" onclick="toggleAction(this)">
+      <div class="action-box"><span class="action-mark">✓</span></div>
+      <div class="action-text">建立全家同桌吃饭的习惯</div>
+    </div>
+    <div class="action-item" onclick="toggleAction(this)">
+      <div class="action-box"><span class="action-mark">✓</span></div>
+      <div class="action-text">统一"拒吃不补零食"原则</div>
+    </div>
+    <div class="action-item" onclick="toggleAction(this)">
+      <div class="action-box"><span class="action-mark">✓</span></div>
+      <div class="action-text">开始给奶糖每天一小份无糖酸奶</div>
+    </div>
+    <div class="action-item" onclick="toggleAction(this)">
+      <div class="action-box"><span class="action-mark">✓</span></div>
+      <div class="action-text">检查葡萄切法，所有高风险食物都处理好</div>
+    </div>
+  </div>
+</div>
+
+
+<div class="section">
+  <div class="next-day">
+    <strong>📅 明天（周三）</strong>：场景应用日 — 奶糖把饭菜扔地上，爷爷捡起来继续喂，你怎么回应？
+  </div>
+</div>
+
+
+<div class="sources">
+  <div class="src">📚 来源 1：《美国儿科学会育儿百科（第七版）》第 10-11 章</div>
+  <div class="src">📚 来源 2：《饮食的迷思》Tim Spector · 第 9 章</div>
+  <div class="src">📍 知识卡片：K062（挑食应对）、K035（益生菌与发酵食品）</div>
+</div>
+
+
+<div class="submit-bar">
+  <div class="submit-info" id="progress">已完成 0/3 答题 + 0/6 行动</div>
+  <button class="submit-btn" onclick="submitDay()" id="submitBtn">提交打卡</button>
+</div>
+
+<div class="submit-success" id="successMsg">提交成功 ✓ Day 9 已完成</div>
+
+<script>
+const answers = {
+  1: { correct: 'B', feedback: '正确！1岁后生长速度自然减缓，热量需求下降，吃得少是正常生理现象，不是缺锌也不是消化不良。只要继续提供多种健康食物就好。' },
+  2: { correct: 'A', feedback: '正确！孩子拒吃正餐就保存饭菜，等她饿了再给。不要给饼干糖果垫肚子，这会让孩子更喜欢无营养食物。' },
+  3: { correct: 'B', feedback: '正确！大多数"儿童酸奶"都添加了大量糖，糖抵消了益生菌的好处。选无糖全脂酸奶，看配料表糖<5g/100g才对。' }
+};
+
+let quizDone = [false, false, false];
+let actionCount = 0;
+
+function checkAnswer(qNum, answer) {
+  if (quizDone[qNum-1]) return;
+  quizDone[qNum-1] = true;
+  
+  const opts = document.querySelectorAll('#quiz' + qNum + ' .quiz-opt');
+  const fb = document.getElementById('fb' + qNum);
+  
+  opts.forEach(opt => opt.classList.add('disabled'));
+  
+  if (answer === answers[qNum].correct) {
+    event.target.classList.add('selected-correct');
+    fb.className = 'quiz-feedback correct-fb show';
+    fb.innerHTML = '✓ ' + answers[qNum].feedback;
+  } else {
+    event.target.classList.add('selected-wrong');
+    fb.className = 'quiz-feedback wrong-fb show';
+    fb.innerHTML = '✗ 不对哦～' + answers[qNum].feedback;
+  }
+  
+  updateProgress();
+}
+
+function toggleAction(item) {
+  item.classList.toggle('done');
+  actionCount = document.querySelectorAll('.action-item.done').length;
+  updateProgress();
+}
+
+function updateProgress() {
+  const quizCount = quizDone.filter(x => x).length;
+  document.getElementById('progress').textContent = 
+    '已完成 ' + quizCount + '/3 答题 + ' + actionCount + '/6 行动';
+}
+
+function submitDay() {
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = '提交中...';
+  
+  // 模拟提交
+  setTimeout(() => {
+    document.getElementById('successMsg').classList.add('show');
+    setTimeout(() => {
+      document.getElementById('successMsg').classList.remove('show');
+    }, 3000);
+    btn.textContent = '已提交 ✓';
+  }, 800);
+}
+</script>
+</body>
+</html>
