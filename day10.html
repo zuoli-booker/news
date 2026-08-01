@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>家庭健康课 · Day 10</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#F7F7F5;color:#333;line-height:1.8;font-size:16px;max-width:680px;margin:0 auto;padding-bottom:80px}
+.topbar{background:#E67E22;color:#fff;padding:24px 20px 20px}
+.topbar .meta{font-size:13px;opacity:.8;letter-spacing:1px}
+.topbar h1{font-size:21px;font-weight:700;margin-top:6px;line-height:1.4}
+.topbar .stage{display:inline-block;margin-top:10px;font-size:12px;background:rgba(255,255,255,.2);padding:3px 10px;border-radius:12px}
+.intro{background:#fff;padding:16px 20px;border-bottom:1px solid #EEE;font-size:14px;color:#666;line-height:1.7}
+.section{background:#fff;margin:10px 0;padding:22px 20px}
+.section-tag{font-size:12px;color:#999;letter-spacing:2px;margin-bottom:8px}
+h2{font-size:18px;font-weight:700;margin-bottom:6px;color:#222}
+h3{font-size:16px;font-weight:700;margin:18px 0 8px;color:#333}
+h3:first-child{margin-top:0}
+p{font-size:15px;color:#444;margin-bottom:10px}
+ul{list-style:none;margin:6px 0 12px}
+ul li{font-size:15px;color:#444;padding:4px 0 4px 18px;position:relative}
+ul li::before{content:"·";position:absolute;left:4px;color:#aaa;font-weight:bold}
+b,strong{font-weight:600;color:#222}
+.scene-card{background:#FFF8E6;border-radius:12px;padding:20px;margin:10px 0}
+.scene-header{font-size:14px;font-weight:600;color:#B7791F;margin-bottom:10px}
+.scene-text{font-size:15px;line-height:1.8;color:#5D4037}
+.question-block{background:#F8F9FA;border-radius:10px;padding:16px;margin:12px 0;border-left:4px solid #E67E22}
+.q-number{font-size:14px;font-weight:600;color:#E67E22;margin-bottom:6px}
+.q-text{font-size:15px;color:#333;line-height:1.7}
+.q-sub{font-size:13px;color:#777;margin-top:8px;font-style:italic}
+.knowledge-review{background:#F8F9FA;border-radius:10px;padding:16px;margin:10px 0}
+.knowledge-title{font-size:14px;font-weight:600;color:#666;margin-bottom:10px}
+.knowledge-item{font-size:14px;color:#555;padding:6px 0;border-bottom:1px solid #EEE}
+.knowledge-item:last-child{border-bottom:none}
+.reflection-area{background:#FDF2E9;border-radius:10px;padding:16px;margin:12px 0}
+.reflection-title{font-size:14px;font-weight:600;color:#D35400;margin-bottom:10px}
+textarea{width:100%;min-height:100px;padding:12px;border:1px solid #DDD;border-radius:8px;font-size:14px;font-family:inherit;resize:vertical}
+.action-list{margin-top:8px}
+.action-item{display:flex;align-items:flex-start;padding:12px 0;border-bottom:1px solid #F0F0F0;cursor:pointer}
+.action-item:last-child{border:none}
+.action-box{width:22px;height:22px;border:2px solid #DDD;border-radius:6px;margin-right:12px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.action-item.done .action-box{background:#E67E22;border-color:#E67E22}
+.action-item.done .action-mark{display:block;color:#fff;font-size:13px;font-weight:bold}
+.action-mark{display:none}
+.action-text{font-size:15px;color:#444;flex:1}
+.action-item.done .action-text{color:#BBB;text-decoration:line-through}
+.next-day{background:#F0ECE5;border-radius:10px;padding:14px 20px;margin:10px 0;font-size:14px;color:#888}
+.submit-bar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #EEE;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;max-width:680px;margin:0 auto;z-index:100}
+.submit-info{font-size:13px;color:#999}
+.submit-btn{padding:10px 28px;border:none;border-radius:20px;background:#E67E22;color:#fff;font-size:15px;font-weight:600;cursor:pointer;transition:all .2s}
+.submit-btn:active{transform:scale(.95)}
+.submit-btn:disabled{background:#CCC}
+.submit-success{position:fixed;bottom:70px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:10px 24px;border-radius:20px;font-size:14px;display:none;z-index:200}
+.submit-success.show{display:block;animation:fadeUp .4s ease}
+@keyframes fadeUp{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}
+.tip{background:#FFF3E0;border-radius:8px;padding:12px 16px;margin:10px 0;font-size:14px;color:#E65100}
+.tip strong{color:#E67E22}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="meta">🎬 家庭健康课 · Day 10 / 112</div>
+  <h1>场景应用日 · 吃饭场景</h1>
+  <span class="stage">阶段② 吃饭与如厕的学问 · 第 2 周</span>
+</div>
+
+<div class="intro">学了两天理论，今天来实战。本周学了辅食添加、膳食纤维、挑食应对和益生菌，看看在真实场景里怎么用。</div>
+
+
+<div class="section">
+  <div class="section-tag">本 周 回 顾</div>
+  <h2>我们学了什么</h2>
+  
+  <div class="knowledge-review">
+    <div class="knowledge-title">📌 Day 8 · 辅食添加 + 膳食纤维</div>
+    <div class="knowledge-item">6月龄开始，高铁米粉首选；BLW或勺喂都行</div>
+    <div class="knowledge-item">纤维是菌群饲料，每周尝试15+种蔬果谷豆</div>
+    <div class="knowledge-item">新食物可能需要尝试10-15次才接受</div>
+  </div>
+  
+  <div class="knowledge-review">
+    <div class="knowledge-title">📌 Day 9 · 挑食应对 + 益生菌</div>
+    <div class="knowledge-item">1岁后吃得少是正常的（生长减速，热量需求下降）</div>
+    <div class="knowledge-item">吃饭不是战争：提供健康选项，孩子选吃多少</div>
+    <div class="knowledge-item">拒吃后不补零食；天然发酵食品优于保健品</div>
+  </div>
+</div>
+
+
+<div class="section">
+  <div class="section-tag">今 日 场 景</div>
+  <h2>奶糖把饭扔地上了</h2>
+  
+  <div class="scene-card">
+    <div class="scene-header">🍽️ 傍晚 6:00 · 家里餐桌</div>
+    <div class="scene-text">
+      奶糖坐在餐椅上，你刚给她放好一小碗南瓜软饭和几条蒸软的西兰花。她用小手抓起一把饭，看了看，然后直接往地上一扔。
+      <br><br>
+      "哎呀！"奶奶赶紧弯腰捡起来，吹了吹，又塞回奶糖碗里。"乖乖，别浪费，奶奶给你捡起来了。"
+      <br><br>
+      奶糖又抓起一条西兰花，挥了挥，啪--又扔了。奶奶又捡。
+      <br><br>
+      你站在旁边，一股烦躁冲上来。昨天刚学了"吃饭不是战争"，知道不该逼她吃，但看着奶奶一次次捡、一次次塞，你知道这样下去不对，可又不知道该怎么开口。
+      <br><br>
+      你心想：这饭到底还要不要给她吃？奶奶捡起来再喂到底有没有问题？我要不要说点什么？
+      <br><br>
+      奶糖好像觉得这很好玩，又抓了一把饭准备扔。
+    </div>
+  </div>
+</div>
+
+
+<div class="section">
+  <div class="section-tag">请 你 回 答</div>
+  <h2>两个问题</h2>
+  
+  <div class="question-block">
+    <div class="q-number">问题 1 · 先觉察</div>
+    <div class="q-text">此刻你身体哪里最不舒服？</div>
+    <div class="q-text">那个不舒服让"____"变得更难还是更容易？</div>
+    <div class="q-sub">（那个烦躁不是"你的"，是一个模块在试图接管你--看到它在那里就好）</div>
+    <div class="reflection-area">
+      <div class="reflection-title">✍️ 你的回答</div>
+      <textarea placeholder="在这里写下你的觉察..."></textarea>
+    </div>
+  </div>
+  
+  <div class="question-block">
+    <div class="q-number">问题 2 · 再回应</div>
+    <div class="q-text">用本周学的<strong>"吃饭不是战争" + "拒吃不补零食" + "提供健康选项"</strong>，你会怎么回应？</div>
+    <div class="q-sub">（阿马和长官各自回复，不用讨论统一）</div>
+    <div class="reflection-area">
+      <div class="reflection-title">✍️ 你的回应</div>
+      <textarea placeholder="在这里写下你会怎么做..."></textarea>
+    </div>
+  </div>
+</div>
+
+
+<div class="section">
+  <div class="section-tag">知 识 提 示</div>
+  <h2>可以用的知识点</h2>
+  
+  <p><strong>🍽️ 吃饭相关：</strong></p>
+  <ul>
+    <li>扔食物是1岁宝宝探索因果关系的正常行为，不是故意捣蛋</li>
+    <li>吃饭不是战争：你越让她吃，她越不想吃</li>
+    <li>拒吃后不补零食：不吃就算了，等下一顿</li>
+    <li>提供健康选项：放2-3种食物，她选什么吃多少</li>
+  </ul>
+  
+  <p><strong>👨‍👩‍👧 家庭一致性相关：</strong></p>
+  <ul>
+    <li>奶奶捡起来再喂 = 教会奶糖"扔了还会回来"</li>
+    <li>先共情奶奶："我知道您心疼食物"</li>
+    <li>统一原则：不吃就收走，不追着喂、不捡起来再喂</li>
+    <li>老人的初衷是好的，方式可以慢慢调整</li>
+  </ul>
+  
+  <p><strong>😌 自我关怀相关：</strong></p>
+  <ul>
+    <li>烦躁是正常的，不代表你是坏父母</li>
+    <li>今晚做不到完美回应没关系</li>
+    <li>先照顾好自己的情绪，再处理饭桌问题</li>
+  </ul>
+  
+  <div class="tip">
+    <strong>💡 小贴士</strong><br>
+    1岁宝宝扔食物很多时候是在探索"我松手会发生什么"，这是认知发展的正常表现。可以给她一个"可以扔"的东西（比如碗旁边放个小桶），告诉她"这个可以扔"。不要过度反应，平静地把碗收走就好。
+  </div>
+</div>
+
+
+<div class="section">
+  <div class="section-tag">行 动 清 单</div>
+  <h2>接下来可以做的</h2>
+  
+  <div class="action-list" id="actions">
+    <div class="action-item" onclick="toggleAction(this)">
+      <div class="action-box"><span class="action-mark">✓</span></div>
+      <div class="action-text">和奶奶/爷爷聊聊：统一"不追喂、不捡起来再喂"的原则</div>
+    </div>
+    <div class="action-item" onclick="toggleAction(this)">
+      <div class="action-box"><span class="action-mark">✓</span></div>
+      <div class="action-text">下次奶糖扔食物时，平静地把碗收走，不追喂</div>
+    </div>
+    <div class="action-item" onclick="toggleAction(this)">
+      <div class="action-box"><span class="action-mark">✓</span></div>
+      <div class="action-text">每顿提供2-3种健康选项，吃不吃由她</div>
+    </div>
+    <div class="action-item" onclick="toggleAction(this)">
+      <div class="action-box"><span class="action-mark">✓</span></div>
+      <div class="action-text">给奶糖一个"可以扔"的替代物，满足探索需求</div>
+    </div>
+  </div>
+</div>
+
+
+<div class="section">
+  <div class="next-day">
+    <strong>📅 明天（周三）</strong>：正常推送新内容 + 今日场景的复盘和推荐回应方式<br>
+    主题：如厕训练实操 + 倒退处理
+  </div>
+</div>
+
+
+<div class="submit-bar">
+  <div class="submit-info" id="progress">已完成 0/4 行动</div>
+  <button class="submit-btn" onclick="submitDay()" id="submitBtn">提交打卡</button>
+</div>
+
+<div class="submit-success" id="successMsg">提交成功 ✓ Day 10 已完成，记得在群里分享你的回答</div>
+
+<script>
+let actionCount = 0;
+
+function toggleAction(item) {
+  item.classList.toggle('done');
+  actionCount = document.querySelectorAll('.action-item.done').length;
+  document.getElementById('progress').textContent = 
+    '已完成 ' + actionCount + '/4 行动';
+}
+
+function submitDay() {
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = '提交中...';
+  
+  // 模拟提交
+  setTimeout(() => {
+    document.getElementById('successMsg').classList.add('show');
+    setTimeout(() => {
+      document.getElementById('successMsg').classList.remove('show');
+    }, 4000);
+    btn.textContent = '已提交 ✓';
+  }, 800);
+}
+</script>
+</body>
+</html>
