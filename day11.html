@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>家庭健康课 · Day 11</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#F7F7F5;color:#333;line-height:1.8;font-size:16px;max-width:680px;margin:0 auto;padding-bottom:80px}
+.topbar{background:#5B8C5A;color:#fff;padding:24px 20px 20px}
+.topbar .meta{font-size:13px;opacity:.8;letter-spacing:1px}
+.topbar h1{font-size:21px;font-weight:700;margin-top:6px;line-height:1.4}
+.topbar .stage{display:inline-block;margin-top:10px;font-size:12px;background:rgba(255,255,255,.2);padding:3px 10px;border-radius:12px}
+.intro{background:#fff;padding:16px 20px;border-bottom:1px solid #EEE;font-size:14px;color:#666;line-height:1.7}
+.section{background:#fff;margin:10px 0;padding:22px 20px}
+.section-tag{font-size:12px;color:#999;letter-spacing:2px;margin-bottom:8px}
+h2{font-size:18px;font-weight:700;margin-bottom:6px;color:#222}
+h3{font-size:16px;font-weight:700;margin:18px 0 8px;color:#333}
+h3:first-child{margin-top:0}
+p{font-size:15px;color:#444;margin-bottom:10px}
+ul{list-style:none;margin:6px 0 12px}
+ul li{font-size:15px;color:#444;padding:4px 0 4px 18px;position:relative}
+ul li::before{content:"·";position:absolute;left:4px;color:#aaa;font-weight:bold}
+b,strong{font-weight:600;color:#222}
+.tip{background:#FFF8E1;border-radius:8px;padding:12px 16px;margin:10px 0;font-size:14px;color:#7A5C00}
+.tip strong{color:#B8860B}
+.warn{background:#FFF0F0;border-radius:8px;padding:12px 16px;margin:10px 0;font-size:14px;color:#A03030}
+.warn strong{color:#C0392B}
+.collapsible{margin:10px 0}
+.collapsible-header{display:flex;align-items:center;justify-content:space-between;background:#5B8C5A;color:#fff;padding:14px 20px;border-radius:10px;cursor:pointer;font-size:15px;font-weight:600}
+.collapsible-header .arrow{transition:transform .3s;font-size:14px}
+.collapsible-header.open .arrow{transform:rotate(180deg)}
+.collapsible-body{display:none;padding:22px 20px;background:#fff;border-radius:0 0 10px 10px}
+.collapsible-body.show{display:block}
+.action-list{margin-top:8px}
+.action-item{display:flex;align-items:flex-start;padding:12px 0;border-bottom:1px solid #F0F0F0;cursor:pointer}
+.action-item:last-child{border:none}
+.action-box{width:22px;height:22px;border:2px solid #DDD;border-radius:6px;margin-right:12px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.action-item.done .action-box{background:#5B8C5A;border-color:#5B8C5A}
+.action-item.done .action-mark{display:block;color:#fff;font-size:13px;font-weight:bold}
+.action-mark{display:none}
+.action-text{font-size:15px;color:#444;flex:1}
+.action-item.done .action-text{color:#BBB;text-decoration:line-through}
+.quiz-options{margin-top:10px}
+.quiz-opt{display:block;width:100%;padding:14px 16px;margin-bottom:8px;border:2px solid #E8E8E8;border-radius:10px;background:#fff;font-size:15px;color:#555;cursor:pointer;transition:all .2s;text-align:left}
+.quiz-opt:active{transform:scale(.98)}
+.quiz-opt.selected-correct{border-color:#5B8C5A;background:#F2F8F2;color:#3D6B3D}
+.quiz-opt.selected-wrong{border-color:#E8833A;background:#FFF3E0;color:#B5651D}
+.quiz-opt.disabled{pointer-events:none;opacity:.6}
+.quiz-feedback{margin-top:8px;padding:10px 14px;border-radius:8px;font-size:14px;display:none;line-height:1.6}
+.quiz-feedback.show{display:block}
+.quiz-feedback.correct-fb{background:#E8F5E9;color:#2E7D32}
+.quiz-feedback.wrong-fb{background:#FFF3E0;color:#E65100}
+.insight{background:#F3E8FF;border-radius:10px;padding:16px 20px;margin:10px 0}
+.insight-label{font-size:13px;color:#7C3AED;font-weight:600;margin-bottom:6px}
+.insight-text{font-size:15px;color:#4A2A6B;line-height:1.7;font-weight:500}
+.next-day{background:#F0ECE5;border-radius:10px;padding:14px 20px;margin:10px 0;font-size:14px;color:#888}
+.sources{font-size:12px;color:#BBB;padding:16px 20px;line-height:1.6}
+.sources .src{margin-bottom:4px}
+.submit-bar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #EEE;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;max-width:680px;margin:0 auto;z-index:100}
+.submit-info{font-size:13px;color:#999}
+.submit-btn{padding:10px 28px;border:none;border-radius:20px;background:#5B8C5A;color:#fff;font-size:15px;font-weight:600;cursor:pointer;transition:all .2s}
+.submit-btn:active{transform:scale(.95)}
+.submit-btn:disabled{background:#CCC}
+.submit-success{position:fixed;bottom:70px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:10px 24px;border-radius:20px;font-size:14px;display:none;z-index:200}
+.submit-success.show{display:block;animation:fadeUp .4s ease}
+@keyframes fadeUp{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}
+.divider{text-align:center;color:#CCC;font-size:12px;margin:14px 0;letter-spacing:3px}
+.guide{background:#F0F7FF;border-left:4px solid #4A90D9;border-radius:0 8px 8px 0;padding:12px 16px;margin:10px 0;font-size:14px;color:#3A6B9E;line-height:1.7}
+.step{display:flex;align-items:flex-start;margin:10px 0;background:#F9F7F2;border-radius:10px;padding:12px 14px}
+.step .num{width:28px;height:28px;border-radius:50%;background:#5B8C5A;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;margin-right:12px}
+.step .body{flex:1}
+.step .body .t{font-weight:600;font-size:15px;color:#333}
+.step .body .d{font-size:13px;color:#888;line-height:1.6;margin-top:2px}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="meta">📚 家庭健康课 · Day 11 / 112</div>
+  <h1>如厕训练实操 + 如果倒退怎么办</h1>
+  <span class="stage">第 2 周 · 吃饭与如厕的学问</span>
+</div>
+
+<div class="intro">Day 4 我们聊了"要不要开始、怎么判断准备好了"，Day 11 把镜头拉近：<strong>真正开始训练时，那五步怎么走？</strong>以及最让爸妈崩溃的一点——明明学会了的，怎么突然又"倒退"了？今天两件事都讲透。</div>
+
+
+<div class="section">
+  <div class="section-tag">主 课 · 5-6 分钟</div>
+  <h2>如厕训练实操：AAP 五步法</h2>
+  <p style="font-size:13px;color:#999">K063 ｜《美国儿科学会育儿百科》</p>
+  
+  <div class="guide">
+    <strong>💭 先想一个问题</strong><br>
+    奶糖明年差不多该开始如厕训练了。你想象一下：第一天，你把坐便器买回来，她会不会直接就坐上去？还是哭闹、逃跑、当没看见？<br><br>
+    大多数家长以为训练 = "教她坐上去尿"。但 AAP 五步法告诉我们：<strong>前两步根本不涉及"尿"</strong>。
+  </div>
+
+  <h3>五步法详解（每一步都别跳）</h3>
+  <div class="step"><div class="num">1</div><div class="body"><div class="t">熟悉：不脱裤子坐上去</div><div class="d">先让坐便器成为"家里的一个东西"，不脱裤子、不要求尿，只是坐在上面熟悉。这是降焦虑的第一步。</div></div></div>
+  <div class="step"><div class="num">2</div><div class="body"><div class="t">实操：取尿布坐上去，双脚踩地</div><div class="d">关键细节：<strong>双脚要牢牢踩到地面</strong>（垫个小凳子），否则腹部使不上力，大便特别难。不是"抱着坐"，是"稳稳站好地坐"。</div></div></div>
+  <div class="step"><div class="num">3</div><div class="body"><div class="t">关联：把尿布上的排泄物扔进坐便器</div><div class="d">让孩子看着"粑粑从尿布掉进马桶"，原来这个东西是去这里的。这是理解"用途"的关键一步，很多孩子卡在这里。</div></div></div>
+  <div class="step"><div class="num">4</div><div class="body"><div class="t">习惯：不包尿布时多在坐便器旁玩</div><div class="d">餐后是最佳时机（肠道蠕动最活跃）。让她在坐便器周边玩，慢慢把"坐上去"变成身体记忆。</div></div></div>
+  <div class="step"><div class="num">5</div><div class="body"><div class="t">换裤：白天逐渐换训练裤</div><div class="d">训练裤不是纸尿裤——它让孩子感受到"湿湿的不舒服"，这是学会控制的关键。男孩可学站着小便。</div></div></div>
+
+  <div class="tip"><strong>两大原则</strong>：① 大便先行——先训练大便，小便通常跟着就学会了；② 全程轻松积极——不批评失败、不惩罚意外、每一次努力都回应。</div>
+
+  <div class="warn"><strong>⚠️ 夜间是另一回事</strong>：白天控制成熟后，夜间/午睡控制还要再等很久。用训练裤 + 塑料隔尿垫，告诉孩子"所有孩子都会尿床"，<strong>6 岁前尿床都正常</strong>，绝不为此批评。</div>
+</div>
+
+<div class="divider">━━━━━━━━━━</div>
+
+
+<div class="collapsible">
+  <div class="collapsible-header open" onclick="toggleCollapse(this)">
+    <span>📖 延伸阅读：如果"倒退"了怎么办（3-4 分钟）</span>
+    <span class="arrow">▲</span>
+  </div>
+  <div class="collapsible-body show">
+    <p style="font-size:13px;color:#999">K063 如厕训练 + K094 正面管教</p>
+    
+    <h3>最崩溃的一幕：明明学会了，突然又尿裤子</h3>
+    <p>孩子已经能说"我要尿尿"、自己上马桶了，突然有一天又尿了一裤子，甚至接连几天"倒退"。很多家长第一反应是：是不是退步了？是不是我哪里做错了？</p>
+    <p><strong>先给你吃颗定心丸：倒退很正常，这不是失败。</strong></p>
+
+    <h3>为什么孩子会"倒退"？</h3>
+    <ul>
+      <li><strong>生活变动</strong>：搬家、新宝宝出生、上托儿所、换照护人——任何"新情况"都可能让已掌握的技能暂时退步</li>
+      <li><strong>身体不适</strong>：便秘、尿路感染、生病，都会让控制力暂时下降</li>
+      <li><strong>情绪压力</strong>：分离焦虑、执拗期、被催促——压力一大，技能就"缩回去"</li>
+      <li><strong>测试你</strong>：孩子会"测试"你是不是认真的，看看你对他倒退的态度</li>
+    </ul>
+
+    <h3>倒退时，记住这三件事</h3>
+    <ul>
+      <li><strong>① 不惩罚、不嘲笑</strong>：惩罚只会让"尿裤子"变成羞耻，孩子更不敢说，反而拖得更久</li>
+      <li><strong>② 平静带过</strong>："没关系，我们一起清理一下。"动作比语言更有力量，让孩子知道这是个小事</li>
+      <li><strong>③ 往回退一步</strong>：如果压力大，就退回"熟悉"阶段（不脱裤子坐坐便器），等状态回暖再继续。技能不会消失，只是暂时收起来</li>
+    </ul>
+    <div class="tip"><strong>一句话</strong>：倒退不是"退步"，是孩子用行动告诉你"我现在有点扛不住，需要你先接住我"。接住他，他自己会再走回来。</div>
+  </div>
+</div>
+
+
+<div class="section">
+  <div class="section-tag">今 日 输 出</div>
+  <h2>✅ 今日行动</h2>
+  <p style="font-size:14px;color:#999">点击勾选完成的任务</p>
+  <div class="action-list">
+    <div class="action-item" onclick="toggleAction(this)">
+      <div class="action-box"><span class="action-mark">✓</span></div>
+      <span class="action-text">记住五步法精髓：熟悉→实操→关联→习惯→换裤，且"双脚踩地"是关键细节</span>
+    </div>
+    <div class="action-item" onclick="toggleAction(this)">
+      <div class="action-box"><span class="action-mark">✓</span></div>
+      <span class="action-text">和长官约定：将来训练时，大便先行、白天先于夜间、夜间 6 岁前尿床都正常</span>
+    </div>
+    <div class="action-item" onclick="toggleAction(this)">
+      <div class="action-box"><span class="action-mark">✓</span></div>
+      <span class="action-text">把"倒退=正常，先接住再往回退一步"写进我们的育儿共识</span>
+    </div>
+  </div>
+</div>
+
+
+<div class="section">
+  <h2>🤔 今日小问题</h2>
+  <p>奶糖 2 岁半，如厕训练已经初见成效，能自己说"尿尿"了。但最近家里来了客人，她突然又尿了两次裤子。你第一反应怎么做？</p>
+  <div class="quiz-options"><button class="quiz-opt" data-val="A" onclick="quizSelect(this,0)">A. 有点生气："怎么又尿裤子了？不是学会了吗？"</button><button class="quiz-opt" data-val="B" onclick="quizSelect(this,1)">B. 平静带过："没关系，我们一起清理。"然后在情绪稳定后，让她退回熟悉阶段慢慢来</button><button class="quiz-opt" data-val="C" onclick="quizSelect(this,2)">C. 直接退回纸尿裤，等彻底稳定再重新训练</button>
+  </div>
+  <div class="quiz-feedback" id="quizFb"></div>
+</div>
+
+
+<div class="section">
+  <div class="insight">
+    <div class="insight-label">💡 今日反直觉发现</div>
+    <div class="insight-text">「如厕训练的大便第一步，是让孩子看着自己的粑粑被扔进马桶——不是"羞耻"，而是帮她把"去小孩的厕所"这件事关联起来。孩子学会控制的起点，比想象中更小、更具体。」</div>
+  </div>
+</div>
+
+<div class="next-day">📅 明日预告：Day 12 · 便秘与腹泻 -- 便秘预防与处理 + 腹泻家庭护理，大便里藏着孩子的健康信号。</div>
+
+<div class="sources"><div class="src">📖 K063 如厕训练 --《美国儿科学会育儿百科（第七版）》第 10-11 章</div><div class="src">📖 K094 正面管教·性格综合应用 -- 倒退是反复学习的过程</div></div>
+
+<div class="submit-bar">
+  <span class="submit-info" id="submitInfo">行动 0/3 · 答题 未答</span>
+  <button class="submit-btn" id="submitBtn" onclick="submitDay()">提交今日学习</button>
+</div>
+<div class="submit-success" id="submitSuccess">✅ 提交成功！阿虾已收到</div>
+
+<script>
+function toggleCollapse(el){el.classList.toggle('open');el.nextElementSibling.classList.toggle('show')}
+var SUBMIT_URL='__SUBMIT_URL__';
+var actionCount=0;var actionTotal=3;
+function toggleAction(el){el.classList.toggle('done');actionCount=document.querySelectorAll('.action-item.done').length;updateInfo()}
+var quizAnswered=false;var quizVal=null;
+var quizData=[{c:0,f:"批评会让孩子把"尿裤子"变成羞耻，反而更不敢说，拖得更久。倒退时最不该做的就是生气。"},{c:1,f:"完全正确！先平静接住（不惩罚不嘲笑），等情绪稳定后往回退一步慢慢来——技能不会消失，只是暂时收起来。"},{c:0,f:"退回纸尿裤没问题，但不需要"惩罚性"退回。关键在于平静带过 + 找准压力源，而不是否定孩子已学会的能力。"}];
+function quizSelect(btn,idx){
+  if(quizAnswered)return;quizAnswered=true;
+  var d=quizData[idx];var correct=d.c==1;var feedback=d.f;
+  quizVal=btn.getAttribute('data-val');
+  var opts=document.querySelectorAll('.quiz-opt');
+  var correctVal='';
+  for(var i=0;i<opts.length;i++){
+    opts[i].classList.add('disabled');
+    if(quizData[i].c==1){
+      opts[i].classList.add('selected-correct');
+      correctVal=opts[i].getAttribute('data-val');
+    }
+  }
+  if(!correct)btn.classList.add('selected-wrong');
+  var fb=document.getElementById('quizFb');
+  fb.className='quiz-feedback show '+(correct?'correct-fb':'wrong-fb');
+  var prefix=correct?'✅ ':'❌ 答错了！正确答案是 '+correctVal+'。';
+  fb.textContent=prefix+feedback;
+  updateInfo();
+}
+function updateInfo(){
+  var q=quizVal?'已答':'未答';
+  document.getElementById('submitInfo').textContent='行动 '+actionCount+'/'+actionTotal+' · 答题 '+q;
+}
+function submitDay(){
+  if(document.getElementById('submitBtn').disabled)return;
+  var data={
+    day:'day11',
+    date:new Date().toISOString().slice(0,10),
+    actions:Array.from(document.querySelectorAll('.action-item')).map(function(el){return el.classList.contains('done')}),
+    quiz_answer:quizVal,
+    submitted_at:new Date().toISOString()
+  };
+  fetch(SUBMIT_URL,{method:'PUT',body:JSON.stringify(data)})
+    .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status)})
+    .then(function(d){
+      var s=document.getElementById('submitSuccess');s.classList.add('show');
+      var btn=document.getElementById('submitBtn');btn.textContent='已提交 ✓';btn.disabled=true;
+      setTimeout(function(){s.classList.remove('show')},3000);
+    })
+    .catch(function(e){
+      localStorage.setItem('day11_feedback',JSON.stringify(data));
+      var s=document.getElementById('submitSuccess');s.textContent='已保存（离线）';s.classList.add('show');
+      var btn=document.getElementById('submitBtn');btn.textContent='已保存 ✓';btn.disabled=true;
+      setTimeout(function(){s.classList.remove('show')},3000);
+    });
+}
+</script>
+</body>
+</html>
