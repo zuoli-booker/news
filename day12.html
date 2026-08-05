@@ -220,7 +220,7 @@ var SUBMIT_URL='__SUBMIT_URL__';
 var actionCount=0;var actionTotal=3;
 function toggleAction(el){el.classList.toggle('done');actionCount=document.querySelectorAll('.action-item.done').length;updateInfo()}
 var quizAnswered=false;var quizVal=null;
-var quizData=[{c:0,f:"观察一天可以，但腹泻时第一步是评估脱水风险，而不是等。米汤能提供一些碳水，但不能替代电解质补液。"},{c:1,f:"完全正确！腹泻首要任务是防脱水：看尿量+精神状态，同时补电解质溶液。等"观察一天"可能错过补液窗口。"},{c:0,f:"2 岁以下孩子禁用非处方止泻药！这些药会加重肠道损伤、掩盖症状。止泻药不是腹泻的正确处理方式。"}];
+var quizData=[{c:0,f:"观察一天可以，但腹泻时第一步是评估脱水风险，而不是等。米汤能提供一些碳水，但不能替代电解质补液。"},{c:1,f:"完全正确！腹泻首要任务是防脱水：看尿量+精神状态，同时补电解质溶液。等「观察一天」可能错过补液窗口。"},{c:0,f:"2 岁以下孩子禁用非处方止泻药！这些药会加重肠道损伤、掩盖症状。止泻药不是腹泻的正确处理方式。"}];
 function quizSelect(btn,idx){
   if(quizAnswered)return;quizAnswered=true;
   var d=quizData[idx];var correct=d.c==1;var feedback=d.f;
