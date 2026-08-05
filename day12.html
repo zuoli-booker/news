@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>家庭健康课 · Day 12</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#F7F7F5;color:#333;line-height:1.8;font-size:16px;max-width:680px;margin:0 auto;padding-bottom:80px}
+.topbar{background:#5B8C5A;color:#fff;padding:24px 20px 20px}
+.topbar .meta{font-size:13px;opacity:.8;letter-spacing:1px}
+.topbar h1{font-size:21px;font-weight:700;margin-top:6px;line-height:1.4}
+.topbar .stage{display:inline-block;margin-top:10px;font-size:12px;background:rgba(255,255,255,.2);padding:3px 10px;border-radius:12px}
+.intro{background:#fff;padding:16px 20px;border-bottom:1px solid #EEE;font-size:14px;color:#666;line-height:1.7}
+.section{background:#fff;margin:10px 0;padding:22px 20px}
+.section-tag{font-size:12px;color:#999;letter-spacing:2px;margin-bottom:8px}
+h2{font-size:18px;font-weight:700;margin-bottom:6px;color:#222}
+h3{font-size:16px;font-weight:700;margin:18px 0 8px;color:#333}
+p{font-size:15px;color:#444;margin-bottom:10px}
+ul{list-style:none;margin:6px 0 12px}
+ul li{font-size:15px;color:#444;padding:4px 0 4px 18px;position:relative}
+ul li::before{content:"·";position:absolute;left:4px;color:#aaa;font-weight:bold}
+b,strong{font-weight:600;color:#222}
+.tip{background:#FFF8E1;border-radius:8px;padding:12px 16px;margin:10px 0;font-size:14px;color:#7A5C00}
+.tip strong{color:#B8860B}
+.warn{background:#FFF0F0;border-radius:8px;padding:12px 16px;margin:10px 0;font-size:14px;color:#A03030}
+.warn strong{color:#C0392B}
+.guide{background:#F0F7FF;border-left:4px solid #4A90D9;border-radius:0 8px 8px 0;padding:12px 16px;margin:10px 0;font-size:14px;color:#3A6B9E;line-height:1.7}
+.collapsible{margin:10px 0}
+.collapsible-header{display:flex;align-items:center;justify-content:space-between;background:#5B8C5A;color:#fff;padding:14px 20px;border-radius:10px;cursor:pointer;font-size:15px;font-weight:600}
+.collapsible-header .arrow{transition:transform .3s;font-size:14px}
+.collapsible-header.open .arrow{transform:rotate(180deg)}
+.collapsible-body{display:none;padding:22px 20px;background:#fff;border-radius:0 0 10px 10px}
+.collapsible-body.show{display:block}
+.action-list{margin-top:8px}
+.action-item{display:flex;align-items:flex-start;padding:12px 0;border-bottom:1px solid #F0F0F0;cursor:pointer}
+.action-item:last-child{border:none}
+.action-box{width:22px;height:22px;border:2px solid #DDD;border-radius:6px;margin-right:12px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.action-item.done .action-box{background:#5B8C5A;border-color:#5B8C5A}
+.action-item.done .action-mark{display:block;color:#fff;font-size:13px;font-weight:bold}
+.action-mark{display:none}
+.action-text{font-size:15px;color:#444;flex:1}
+.action-item.done .action-text{color:#BBB;text-decoration:line-through}
+.quiz-options{margin-top:10px}
+.quiz-opt{display:block;width:100%;padding:14px 16px;margin-bottom:8px;border:2px solid #E8E8E8;border-radius:10px;background:#fff;font-size:15px;color:#555;cursor:pointer;transition:all .2s;text-align:left}
+.quiz-opt:active{transform:scale(.98)}
+.quiz-opt.selected-correct{border-color:#5B8C5A;background:#F2F8F2;color:#3D6B3D}
+.quiz-opt.selected-wrong{border-color:#E8833A;background:#FFF3E0;color:#B5651D}
+.quiz-opt.disabled{pointer-events:none;opacity:.6}
+.quiz-feedback{margin-top:8px;padding:10px 14px;border-radius:8px;font-size:14px;display:none;line-height:1.6}
+.quiz-feedback.show{display:block}
+.quiz-feedback.correct-fb{background:#E8F5E9;color:#2E7D32}
+.quiz-feedback.wrong-fb{background:#FFF3E0;color:#E65100}
+.insight{background:#F3E8FF;border-radius:10px;padding:16px 20px;margin:10px 0}
+.insight-label{font-size:13px;color:#7C3AED;font-weight:600;margin-bottom:6px}
+.insight-text{font-size:15px;color:#4A2A6B;line-height:1.7;font-weight:500}
+.next-day{background:#F0ECE5;border-radius:10px;padding:14px 20px;margin:10px 0;font-size:14px;color:#888}
+.sources{font-size:12px;color:#BBB;padding:16px 20px;line-height:1.6}
+.sources .src{margin-bottom:4px}
+.submit-bar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #EEE;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;max-width:680px;margin:0 auto;z-index:100}
+.submit-info{font-size:13px;color:#999}
+.submit-btn{padding:10px 28px;border:none;border-radius:20px;background:#5B8C5A;color:#fff;font-size:15px;font-weight:600;cursor:pointer;transition:all .2s}
+.submit-btn:active{transform:scale(.95)}
+.submit-btn:disabled{background:#CCC}
+.submit-success{position:fixed;bottom:70px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:10px 24px;border-radius:20px;font-size:14px;display:none;z-index:200}
+.submit-success.show{display:block;animation:fadeUp .4s ease}
+@keyframes fadeUp{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}
+.divider{text-align:center;color:#CCC;font-size:12px;margin:14px 0;letter-spacing:3px}
+.danger-tag{display:inline-block;background:#FFF0F0;color:#C0392B;font-size:12px;padding:2px 8px;border-radius:4px;margin:4px 4px 4px 0}
+.ok-tag{display:inline-block;background:#E8F5E9;color:#2E7D32;font-size:12px;padding:2px 8px;border-radius:4px;margin:4px 4px 4px 0}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="meta">📚 家庭健康课 · Day 12 / 112</div>
+  <h1>便秘与腹泻——大便里藏着的健康信号</h1>
+  <span class="stage">第 2 周 · 吃饭与如厕的学问</span>
+</div>
+
+<div class="intro">奶糖正在探索各种辅食，大便也在"与时俱进"。哪天突然干硬拉不出来，或者稀得像水一样——家长第一反应往往是慌。今天把便秘和腹泻讲清楚：<strong>什么算、怎么处理、什么情况要跑医院。</strong></div>
+
+<div class="section">
+  <div class="section-tag">主 课 · 5-6 分钟</div>
+  <h2>便秘：不是"几天没拉"就叫便秘</h2>
+  <p style="font-size:13px;color:#999">K136 ｜《美国儿科学会育儿百科》第 16 章</p>
+
+  <div class="guide">
+    <strong>💭 先想一个问题</strong><br>
+    奶糖 2 天没拉粑粑了，奶奶说"赶紧吃点香蕉"。你觉得：2 天没拉就算便秘吗？香蕉真的能治便秘吗？<br><br>
+    很多家长对便秘的判断标准是错的。<strong>不能只看几天拉一次。</strong>
+  </div>
+
+  <h3>① 怎么判断"真的便秘了"？</h3>
+  <p>便秘的标志不是"几天没排便"，而是这三个信号同时出现：</p>
+  <ul>
+    <li><strong>大便干硬</strong>：像羊粪球、又小又硬，或者大块干硬</li>
+    <li><strong>排便费力</strong>：用力到脸红、哭闹、憋气</li>
+    <li><strong>排便后腹痛减轻</strong>：说明之前积压了</li>
+  </ul>
+  <p>有些孩子 2-3 天排一次但大便软、排便轻松，这<strong>不算便秘</strong>。纯母乳喂养的婴儿可能一周才拉一次，大便还是软的——这也是正常的。</p>
+
+  <div class="tip"><strong>关键公式</strong>：便秘 = 干硬 + 费力 + 痛苦。不是"多久没拉"。</div>
+
+  <h3>② 憋便的恶性循环（最该警惕的）</h3>
+  <p>孩子排便痛过一次 → 下意识憋便 → 大便在肠道越留越久 → 越干越硬 → 排便更痛 → 更不想拉。</p>
+  <p>高发于如厕训练期（2-5 岁），外出时不愿用陌生厕所也会憋便。直肠积留大量大便后，液态排泄物会从旁边渗出来——<strong>看起来像"拉稀"，实际是便秘导致的</strong>，很多人搞反了。</p>
+
+  <h3>③ 家庭应对三步走</h3>
+  <ul>
+    <li><strong>饮食调整</strong>：高纤维食物——西梅、梨、豌豆、西蓝花、全谷物米粉；增加饮水量</li>
+    <li><strong>排便姿势</strong>：坐马桶时脚平放地面或小凳子上，腹肌才能使上力推动大便</li>
+    <li><strong>定时训练</strong>：饭后 10 分钟坐马桶 5 分钟，给本书或玩具，重新熟悉排便感觉</li>
+  </ul>
+  <div class="warn"><strong>⚠️ 千万别自行用药</strong>：开塞露、泻药必须咨询医生后使用。自行用药可能掩盖问题，严重便秘需医生制定个性化方案。</div>
+</div>
+
+<div class="divider">━━━━━━━━━━</div>
+
+<div class="collapsible">
+  <div class="collapsible-header open" onclick="toggleCollapse(this)">
+    <span>📖 延伸阅读：腹泻——比便秘更紧急的是脱水（3-4 分钟）</span>
+    <span class="arrow">▲</span>
+  </div>
+  <div class="collapsible-body show">
+    <p style="font-size:13px;color:#999">K132 ｜《美国儿科学会育儿百科》第 16 章</p>
+
+    <h3>腹泻最大的危险：脱水</h3>
+    <p>腹泻本身多数是病毒引起的，一般 2-3 天能自愈。<strong>真正危险的是脱水</strong>——肠道受损后水分和矿物质大量流失，如果补不回来，情况会急转直下。</p>
+
+    <h3>脱水信号识别</h3>
+    <p><span class="ok-tag">轻度</span> 尿量略减少，口唇稍干，精神稍差</p>
+    <p><span class="danger-tag">中度</span> 尿量明显减少，哭闹时无眼泪，囟门凹陷</p>
+    <p><span class="danger-tag">重度</span> 6-12 小时无尿，眼窝凹陷，嗜睡甚至昏迷</p>
+    <div class="warn"><strong>⚠️ 观察重点</strong>：小便次数是最直观的指标。正常婴儿每天换 6 凈以上湿尿布。如果明显减少，就是在脱水。</div>
+
+    <h3>补液是第一要务</h3>
+    <ul>
+      <li><strong>轻微腹泻</strong>：继续正常饮食 + 多喝水</li>
+      <li><strong>伴呕吐</strong>：用<strong>电解质溶液</strong>少量多次喂（不是白开水，白开水没有盐和矿物质）</li>
+      <li><strong>严重腹泻</strong>：停止固体食物和高糖饮料，只喝电解质溶液；母乳喂养可继续</li>
+    </ul>
+    <div class="tip"><strong>电解质溶液</strong>：药店可以买到口服补液盐（ORS），按说明冲泡。家里常备 1-2 包，腹泻时不用慌。</div>
+
+    <h3>什么情况必须跑医院？</h3>
+    <ul>
+      <li>发热持续 24-48 小时</li>
+      <li>拉血便</li>
+      <li>呕吐持续 12-24 小时</li>
+      <li>拒绝进食或喝水</li>
+      <li>6-12 小时未排尿（脱水信号）</li>
+      <li>精神萎靡、嗜睡</li>
+    </ul>
+
+    <h3>预防：比治疗更重要</h3>
+    <ul>
+      <li><strong>手卫生</strong>：换尿布后、处理食物前洗手，这是预防所有消化道感染的第一步</li>
+      <li><strong>轮状病毒疫苗</strong>：2 月龄开始接种，预防最常见的婴幼儿腹泻</li>
+      <li><strong>限制果汁和甜饮料</strong>：过量果汁会导致"幼儿腹泻"（渗透性腹泻）</li>
+      <li><strong>避免非必要抗生素</strong>：抗生素会破坏肠道菌群，引起抗生素相关腹泻</li>
+    </ul>
+    <div class="tip"><strong>一句话总结</strong>：腹泻不要慌着止泻，先看孩子尿量和精神状态——能吃能喝有尿，就不急；尿少了、蔫了，赶紧去医院。</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-tag">今 日 输 出</div>
+  <h2>✅ 今日行动</h2>
+  <p style="font-size:14px;color:#999">点击勾选完成的任务</p>
+  <div class="action-list">
+    <div class="action-item" onclick="toggleAction(this)">
+      <div class="action-box"><span class="action-mark">✓</span></div>
+      <span class="action-text">记住便秘判断三要素：大便干硬 + 排便费力 + 排便后痛减轻（不是几天没拉）</span>
+    </div>
+    <div class="action-item" onclick="toggleAction(this)">
+      <div class="action-box"><span class="action-mark">✓</span></div>
+      <span class="action-text">常备 1-2 包口服补液盐（ORS），腹泻时第一时间补液而非止泻</span>
+    </div>
+    <div class="action-item" onclick="toggleAction(this)">
+      <div class="action-box"><span class="action-mark">✓</span></div>
+      <span class="action-text">学会观察尿量：正常婴儿每天 ≥6 块湿尿布，明显减少就是脱水信号</span>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>🤔 今日小问题</h2>
+  <p>奶糖突然开始拉水样便，一天 5-6 次，还吐了一次。奶奶说"给她喝点米汤就好了"。你觉得第一步应该做什么？</p>
+  <div class="quiz-options">
+    <button class="quiz-opt" data-val="A" onclick="quizSelect(this,0)">A. 先观察一天，如果还拉就去医院</button>
+    <button class="quiz-opt" data-val="B" onclick="quizSelect(this,1)">B. 第一步是评估脱水风险：看尿量和精神状态，同时开始补充电解质溶液</button>
+    <button class="quiz-opt" data-val="C" onclick="quizSelect(this,2)">C. 去药店买止泻药给她吃</button>
+  </div>
+  <div class="quiz-feedback" id="quizFb"></div>
+</div>
+
+<div class="section">
+  <div class="insight">
+    <div class="insight-label">💡 今日反直觉发现</div>
+    <div class="insight-text">「腹泻时最该做的不是止泻，而是补液。2 岁以下孩子禁用非处方止泻药——这些药会加重肠道损伤、掩盖症状。真正的"止泻"是让身体自己修好自己，你要做的只是别让她脱水。」</div>
+  </div>
+</div>
+
+<div class="next-day">📅 明日预告：Day 13 · 本周速览 — 辅食 / 挑食 / 如厕 / 消化，第二周的知识串起来。</div>
+
+<div class="sources">
+  <div class="src">📖 K136 儿童便秘与腹痛 --《美国儿科学会育儿百科（第七版）》第 16 章</div>
+  <div class="src">📖 K132 儿童腹泻 --《美国儿科学会育儿百科（第七版）》第 16 章</div>
+</div>
+
+<div class="submit-bar">
+  <span class="submit-info" id="submitInfo">行动 0/3 · 答题 未答</span>
+  <button class="submit-btn" id="submitBtn" onclick="submitDay()">提交今日学习</button>
+</div>
+<div class="submit-success" id="submitSuccess">✅ 提交成功！阿虾已收到</div>
+
+<script>
+function toggleCollapse(el){el.classList.toggle('open');el.nextElementSibling.classList.toggle('show')}
+var SUBMIT_URL='__SUBMIT_URL__';
+var actionCount=0;var actionTotal=3;
+function toggleAction(el){el.classList.toggle('done');actionCount=document.querySelectorAll('.action-item.done').length;updateInfo()}
+var quizAnswered=false;var quizVal=null;
+var quizData=[{c:0,f:"观察一天可以，但腹泻时第一步是评估脱水风险，而不是等。米汤能提供一些碳水，但不能替代电解质补液。"},{c:1,f:"完全正确！腹泻首要任务是防脱水：看尿量+精神状态，同时补电解质溶液。等"观察一天"可能错过补液窗口。"},{c:0,f:"2 岁以下孩子禁用非处方止泻药！这些药会加重肠道损伤、掩盖症状。止泻药不是腹泻的正确处理方式。"}];
+function quizSelect(btn,idx){
+  if(quizAnswered)return;quizAnswered=true;
+  var d=quizData[idx];var correct=d.c==1;var feedback=d.f;
+  quizVal=btn.getAttribute('data-val');
+  var opts=document.querySelectorAll('.quiz-opt');
+  var correctVal='';
+  for(var i=0;i<opts.length;i++){
+    opts[i].classList.add('disabled');
+    if(quizData[i].c==1){
+      opts[i].classList.add('selected-correct');
+      correctVal=opts[i].getAttribute('data-val');
+    }
+  }
+  if(!correct)btn.classList.add('selected-wrong');
+  var fb=document.getElementById('quizFb');
+  fb.className='quiz-feedback show '+(correct?'correct-fb':'wrong-fb');
+  var prefix=correct?'✅ ':'❌ 答错了！正确答案是 '+correctVal+'。';
+  fb.textContent=prefix+feedback;
+  updateInfo();
+}
+function updateInfo(){
+  var q=quizVal?'已答':'未答';
+  document.getElementById('submitInfo').textContent='行动 '+actionCount+'/'+actionTotal+' · 答题 '+q;
+}
+function submitDay(){
+  if(document.getElementById('submitBtn').disabled)return;
+  var data={
+    day:'day12',
+    date:new Date().toISOString().slice(0,10),
+    actions:Array.from(document.querySelectorAll('.action-item')).map(function(el){return el.classList.contains('done')}),
+    quiz_answer:quizVal,
+    submitted_at:new Date().toISOString()
+  };
+  fetch(SUBMIT_URL,{method:'PUT',body:JSON.stringify(data)})
+    .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status)})
+    .then(function(d){
+      var s=document.getElementById('submitSuccess');s.classList.add('show');
+      var btn=document.getElementById('submitBtn');btn.textContent='已提交 ✓';btn.disabled=true;
+      setTimeout(function(){s.classList.remove('show')},3000);
+    })
+    .catch(function(e){
+      localStorage.setItem('day12_feedback',JSON.stringify(data));
+      var s=document.getElementById('submitSuccess');s.textContent='已保存（离线）';s.classList.add('show');
+      var btn=document.getElementById('submitBtn');btn.textContent='已保存 ✓';btn.disabled=true;
+      setTimeout(function(){s.classList.remove('show')},3000);
+    });
+}
+</script>
+</body>
+</html>
