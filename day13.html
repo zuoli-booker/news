@@ -47,4 +47,175 @@ b,strong{font-weight:600;color:#222}
 .sources .src{margin-bottom:4px}
 .action-list{margin-top:8px}
 .action-item{display:flex;align-items:flex-start;padding:12px 0;border-bottom:1px solid #F0F0F0;cursor:pointer}
-.action-item:last-child{border:non
+.action-item:last-child{border:none}
+.action-box{width:22px;height:22px;border:2px solid #DDD;border-radius:6px;margin-right:12px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.action-item.done .action-box{background:#5B8C5A;border-color:#5B8C5A}
+.action-item.done .action-mark{display:block;color:#fff;font-size:13px;font-weight:bold}
+.action-mark{display:none}
+.action-text{font-size:15px;color:#444;flex:1}
+.action-item.done .action-text{color:#BBB;text-decoration:line-through}
+.submit-bar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #EEE;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;max-width:680px;margin:0 auto;z-index:100}
+.submit-info{font-size:13px;color:#999}
+.submit-btn{padding:10px 28px;border:none;border-radius:20px;background:#5B8C5A;color:#fff;font-size:15px;font-weight:600;cursor:pointer;transition:all .2s}
+.submit-btn:active{transform:scale(.95)}
+.submit-btn:disabled{background:#CCC}
+.submit-success{position:fixed;bottom:70px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:10px 24px;border-radius:20px;font-size:14px;display:none;z-index:200}
+.submit-success.show{display:block;animation:fadeUp .4s ease}
+@keyframes fadeUp{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}
+.divider{text-align:center;color:#CCC;font-size:12px;margin:14px 0;letter-spacing:3px}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="meta">📋 家庭健康课 · Day 13 / 112</div>
+  <h1>第二周速览 · 吃饭与如厕的学问</h1>
+  <span class="stage">第 2 周 · 本周回顾</span>
+</div>
+
+<div class="intro">第二周从辅食添加聊到便秘腹泻，把「吃」和「拉」两个最日常的事讲透了。这周的知识点密集但实用——记住这 5 件事，奶糖 1-2 岁的吃喝拉撒你基本心里有底了。</div>
+
+<div class="section">
+  <div class="section-tag">周 回 顾</div>
+
+  <div class="day-card">
+    <div class="day-num">Day 8 · 辅食添加指南</div>
+    <div class="day-title">从第一口辅食到自主进食</div>
+    <div class="day-point">6 月龄起加辅食，从含铁米粉开始；新食物三天引入法观察过敏；BLW 自主进食 messy 是正常的，别怕脏</div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-num">Day 9 · 挑食应对策略</div>
+    <div class="day-title">孩子不吃≠挑食，是正常的探索期</div>
+    <div class="day-point">反复暴露 10-15 次才能判断喜不喜欢；别把大人的焦虑传递给孩子；益生菌不是万能药，发酵食品更靠谱</div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-num">Day 10 · 场景应用日</div>
+    <div class="day-title">奶糖扔食物，爷爷捡起来继续喂</div>
+    <div class="day-point">场景里练习：觉察自己的情绪 → 找到情绪背后的需求 → 用「和善而坚定」回应，而不是控制或退让</div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-num">Day 11 · 如厕训练实操</div>
+    <div class="day-title">AAP 五步法 + 倒退处理</div>
+    <div class="day-point">五步：熟悉 → 实操 → 关联 → 习惯 → 换裤；倒退不是失败，是孩子在告诉你「我有点扛不住」</div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-num">Day 12 · 便秘与腹泻</div>
+    <div class="day-title">大便里藏着的健康信号</div>
+    <div class="day-point">便秘 = 干硬 + 费力 + 痛苦（不是几天没拉）；腹泻首要防脱水，看尿量；ORS 常备</div>
+  </div>
+</div>
+
+<div class="divider">━━━━━━━━━━</div>
+
+<div class="section">
+  <h2>🎯 如果这周只记住一件事</h2>
+  <div class="insight">
+    <div class="insight-label">本周核心记忆点</div>
+    <div class="insight-text">「自主进食 messy 是正常的 + 如厕倒退不是失败 + 便秘多喝水。少控制，多观察；少焦虑，多陪伴。」</div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>🤔 速览小测</h2>
+  <p>以下哪个说法是正确的？</p>
+  <div class="quiz-options">
+    <button class="quiz-opt" data-val="A" onclick="quizSelect(this,0)">A. 孩子 2 天没拉就是便秘，需要吃香蕉</button>
+    <button class="quiz-opt" data-val="B" onclick="quizSelect(this,1)">B. 孩子把饭扔地上说明他不爱吃，以后别给他做了</button>
+    <button class="quiz-opt" data-val="C" onclick="quizSelect(this,2)">C. 如厕训练倒退时，先平静接住，退回熟悉阶段慢慢来</button>
+  </div>
+  <div class="quiz-feedback" id="quizFb"></div>
+</div>
+
+<div class="section">
+  <h2>✅ 本周复盘行动</h2>
+  <p style="font-size:14px;color:#999">点击勾选完成的任务</p>
+  <div class="action-list">
+    <div class="action-item" onclick="toggleAction(this)">
+      <div class="action-box"><span class="action-mark">✓</span></div>
+      <span class="action-text">记住便秘判断三要素（干硬+费力+痛苦），不再纠结「几天没拉」</span>
+    </div>
+    <div class="action-item" onclick="toggleAction(this)">
+      <div class="action-box"><span class="action-mark">✓</span></div>
+      <span class="action-text">确认家里备了口服补液盐（ORS），下次腹泻不用慌</span>
+    </div>
+    <div class="action-item" onclick="toggleAction(this)">
+      <div class="action-box"><span class="action-mark">✓</span></div>
+      <span class="action-text">接受「自主进食会很 messy」，不因为怕脏而代劳</span>
+    </div>
+  </div>
+</div>
+
+<div class="next-day">📅 周日休息，下周一 Day 14 · 第三周开始：情绪与社交发展——情绪认知 + 执拗期应对</div>
+
+<div class="sources">
+  <div class="src">📖 K008 辅食添加指南 + K034 膳食纤维</div>
+  <div class="src">📖 K062 挑食应对 + K035 益生菌</div>
+  <div class="src">📖 K063 如厕训练实操 + K094 倒退处理</div>
+  <div class="src">📖 K136 便秘与腹痛 + K132 儿童腹泻</div>
+</div>
+
+<div class="submit-bar">
+  <span class="submit-info" id="submitInfo">行动 0/3 · 答题 未答</span>
+  <button class="submit-btn" id="submitBtn" onclick="submitDay()">提交今日学习</button>
+</div>
+<div class="submit-success" id="submitSuccess">✅ 提交成功！阿虾已收到</div>
+
+<script>
+function toggleAction(el){el.classList.toggle('done');actionCount=document.querySelectorAll('.action-item.done').length;updateInfo()}
+var actionCount=0;var actionTotal=3;
+var quizAnswered=false;var quizVal=null;
+var quizData=[{c:0,f:"2 天没拉不一定是便秘，关键看大便是否干硬、排便是否费力。香蕉也不是治便秘的最佳选择，西梅和梨更有效。"},{c:0,f:"孩子扔食物是这个年龄的正常探索行为，不是挑食信号。继续提供 variety，让他自己决定吃多少。"},{c:1,f:"完全正确！倒退不是失败，平静接住 + 退回熟悉阶段 = 给孩子安全感，技能会自己回来。"}];
+function quizSelect(btn,idx){
+  if(quizAnswered)return;quizAnswered=true;
+  var d=quizData[idx];var correct=d.c==1;var feedback=d.f;
+  quizVal=btn.getAttribute('data-val');
+  var opts=document.querySelectorAll('.quiz-opt');
+  var correctVal='';
+  for(var i=0;i<opts.length;i++){
+    opts[i].classList.add('disabled');
+    if(quizData[i].c==1){
+      opts[i].classList.add('selected-correct');
+      correctVal=opts[i].getAttribute('data-val');
+    }
+  }
+  if(!correct)btn.classList.add('selected-wrong');
+  var fb=document.getElementById('quizFb');
+  fb.className='quiz-feedback show '+(correct?'correct-fb':'wrong-fb');
+  var prefix=correct?'✅ ':'❌ 答错了！正确答案是 '+correctVal+'。';
+  fb.textContent=prefix+feedback;
+  updateInfo();
+}
+function updateInfo(){
+  var q=quizVal?'已答':'未答';
+  document.getElementById('submitInfo').textContent='行动 '+actionCount+'/'+actionTotal+' · 答题 '+q;
+}
+function submitDay(){
+  if(document.getElementById('submitBtn').disabled)return;
+  var data={
+    day:'day13',
+    date:new Date().toISOString().slice(0,10),
+    actions:Array.from(document.querySelectorAll('.action-item')).map(function(el){return el.classList.contains('done')}),
+    quiz_answer:quizVal,
+    submitted_at:new Date().toISOString()
+  };
+  fetch('__SUBMIT_URL__',{method:'PUT',body:JSON.stringify(data)})
+    .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status)})
+    .then(function(d){
+      var s=document.getElementById('submitSuccess');s.classList.add('show');
+      var btn=document.getElementById('submitBtn');btn.textContent='已提交 ✓';btn.disabled=true;
+      setTimeout(function(){s.classList.remove('show')},3000);
+    })
+    .catch(function(e){
+      localStorage.setItem('day13_feedback',JSON.stringify(data));
+      var s=document.getElementById('submitSuccess');s.textContent='已保存（离线）';s.classList.add('show');
+      var btn=document.getElementById('submitBtn');btn.textContent='已保存 ✓';btn.disabled=true;
+      setTimeout(function(){s.classList.remove('show')},3000);
+    });
+}
+</script>
+</body>
+</html>
